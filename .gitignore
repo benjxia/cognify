@@ -183,3 +183,7 @@ examples/**/*.json
 *.cog
 cache/
 local_cache/
+
+# datasets
+examples/image-captioning/TextCaps/*
+examples/image-captioning/example.env
