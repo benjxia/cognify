@@ -42,6 +42,10 @@ def generate_caption(image_path):
     information = {
         'image': encode_image(image_path)  # base64 encoded image
     }
+    print("---")
+    print(image_path)
+    print(encode_image(image_path))
+    print("---")
     caption = caption_agent(inputs=information)
     return caption
 
@@ -53,7 +57,24 @@ def vlm_workflow(workflow_input):
         "workflow_output": caption
     }
 
-if __name__ == "__main__":
-    image_file = "test_image.jpg"  # TODO: replace with img folder
+import json
+
+def transform_json(input_file="TextCaps/TextCaps_Annotations.json", output_file="output.json"):
+    with open(input_file, 'r') as f:
+        data = json.load(f)
+    
+    transformed_data = []
+    for item in data['data']:
+        transformed_item = {
+            'image_path': item['flickr_300k_url'],
+            'expected_caption': item['caption_str']
+        }
+        transformed_data.append(transformed_item)
+    
+    with open(output_file, 'w') as f:
+        json.dump(transformed_data, f, indent=4)
+
+if __name__ == '__main__':
+    image_file = "TextCaps/images/039dd0ed14106d32.jpg"
     output = vlm_workflow(image_file)
     print(output)
