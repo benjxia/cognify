@@ -18,6 +18,8 @@ model = ChatOpenAI(model="gpt-4o-mini", temperature=0)
 
 from langchain.output_parsers import PydanticOutputParser
 
+
+
 @dataclass
 class Assessment(BaseModel):
     score: int

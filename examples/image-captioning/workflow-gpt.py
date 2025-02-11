@@ -42,6 +42,10 @@ def generate_caption(image_path):
     information = {
         'image': encode_image(image_path)  # base64 encoded image
     }
+    print("---")
+    print(image_path)
+    print(encode_image(image_path))
+    print("---")
     caption = caption_agent(inputs=information)
     return caption
 
