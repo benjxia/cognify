@@ -107,7 +107,7 @@ T_ModuleMapping = dict[str, str]
 NOTE: this can be recursive if we support evolutioanry optimization
 Example:
     orignal workflow: [a, b, c]
-    mapping: 
+    mapping:
         a -> [a1]
         a1 -> [a2]
         c -> [c1]

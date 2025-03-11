@@ -44,7 +44,7 @@ class StatePool:
         keys = list(kvs.keys())
         for key in keys:
             if key in self.reducer_dict:
-                new_value = self.reducer_dict[key](self.news(key), new_value)
+                new_value = self.reducer_dict[key](self.news(key), kvs[key])
                 self.states[key].append(State(version_id, new_value, is_static))
                 kvs.pop(key)
         for key, value in kvs.items():

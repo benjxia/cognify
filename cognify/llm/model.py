@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import List, Dict, Optional
+from typing import List, Dict, Literal, Optional
 from cognify._compat import override
 from cognify.llm.litellm_wrapper import litellm_completion
 from cognify.llm.prompt import (
@@ -130,6 +130,7 @@ class Model(Module):
         self.steps: List[StepInfo] = []
         self.reasoning = None
         self.rationale = None
+        self.image_downsample: Literal["auto", "low", "high"] = "auto"
 
         # TODO: improve lm configuration handling between agents. currently just unique config for each agent
         self.lm_config = copy.deepcopy(lm_config)
@@ -422,7 +423,8 @@ class Model(Module):
         for input_var in self.input_variables:
             if input_var.image_type:
                 if input_var.image_type == "web":
-                    image_content = ImageContent(image_url=inputs[input_var.name])
+                    image_content = ImageContent(image_url=inputs[input_var.name],
+                                                 detail=self.image_downsample)
                 else:
                     image_content = get_image_content_from_upload(
                         inputs[input_var.name], input_var.image_type
@@ -528,9 +530,9 @@ class StructuredModel(Model):
             model = model_kwargs.pop("model")
 
             response = litellm_completion(
-                model, 
-                self._get_api_compatible_messages(messages), 
-                model_kwargs, 
+                model,
+                self._get_api_compatible_messages(messages),
+                model_kwargs,
                 response_format=self.output_format.schema
             )
             return response
