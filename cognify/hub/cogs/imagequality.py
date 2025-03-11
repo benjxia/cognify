@@ -42,11 +42,6 @@ class VLMImageQuality(CogBase):
             inherit_options=False,
         )
 
-
-
-    def _evolve(self, eval_result) -> EvolveType:
-        pass
-
     @classmethod
     def from_dict(cls, data: dict):
         name, module_name, default_option, options = (

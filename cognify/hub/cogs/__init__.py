@@ -22,6 +22,7 @@ ZeroShotCoT = _LazyModule("cognify.hub.cogs.reasoning.ZeroShotCoT")
 PlanBefore = _LazyModule("cognify.hub.cogs.reasoning.PlanBefore")
 
 TreeOfThought = _LazyModule("cognify.hub.cogs.tree_of_thoughts.tot.TreeOfThought")
+VLMImageQuality = _LazyModule("cognify.hub.cogs.imagequality.VLMImageQuality")
 
 __all__ = [
     "NoChange",
@@ -40,4 +41,5 @@ __all__ = [
     "ZeroShotCoT",
     "PlanBefore",
     "TreeOfThought",
+    "VLMImageQuality",
 ]
