@@ -6,7 +6,7 @@ from cognify.hub.cogs import reasoning, ensemble, model_selection
 from cognify.hub.cogs.common import NoChange
 from cognify.hub.cogs.fewshot import LMFewShot
 from cognify.hub.cogs.reasoning import ZeroShotCoT, PlanBefore
-from cognify.hub.cogs.image_compression import VLMImageQuality, LowQuality, HighQuality
+from cognify.hub.cogs.imagequality import VLMImageQuality, LowQuality, HighQuality
 from cognify.optimizer.control_param import ControlParameter, SelectedObjectives
 from dataclasses import dataclass
 
@@ -243,7 +243,7 @@ def create_search(
                 model_selection_options,
             )
         assert isinstance(model_selection_cog, model_selection.LMSelection)
-    
+
     if n_trials is None:
         if search_type == "light":
             n_trials = 10 # for cog test
