@@ -12,6 +12,7 @@ from langchain_core.prompts import ChatPromptTemplate
 # Initialize the model
 import dotenv
 import os
+
 import csv
 import random
 from collections import defaultdict
@@ -76,10 +77,10 @@ def load_textcaps_data(path_to_data="./img", nr_samples=5):
     assert TRAIN_SPLIT + EVAL_SPLIT + TEST_SPLIT == 1.0, 'Splits should sum to 1.0'
 
     mid_mapping = {}
-    with open('class-descriptions-boxable.csv', 'r') as f:
+    with open('./img/class-descriptions-boxable.csv', 'r') as f:
         reader = csv.reader(f)
         for row in reader:
-            mid_mapping[row[0]] = row[1]  # MID -> 类别名称
+            mid_mapping[row[0]] = row[1]  
 
     label_mapping = defaultdict(list)
     with open(os.path.join(path_to_data, 'filtered.csv'), 'r') as f:
@@ -92,7 +93,7 @@ def load_textcaps_data(path_to_data="./img", nr_samples=5):
         for line in f:
             path_segment = line.strip()
             img_id = path_segment.split('/')[-1]  
-            full_path = os.path.join(path_to_data, f"{path_segment}.jpg")
+            full_path = os.path.join('./img/imgs', f"{img_id}.jpg")
             image_records.append((full_path, img_id))
 
     if len(image_records) > nr_samples:
@@ -177,7 +178,7 @@ from cognify.hub.search import default
 
 model_configs = [
     # OpenAI models
-    cognify.LMConfig(model='gpt-4o-mini', kwargs={'temperature': 0, 'max_tokens': 300}),
+    # cognify.LMConfig(model='gpt-4o-mini', kwargs={'temperature': 0, 'max_tokens': 300}),
     cognify.LMConfig(model='gpt-4o', kwargs={'temperature': 0, 'max_tokens': 300}),
 ]
 

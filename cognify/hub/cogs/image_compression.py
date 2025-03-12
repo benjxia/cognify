@@ -1,5 +1,5 @@
 from abc import ABCMeta
-from typing import Literal
+from typing import Literal, Union
 import uuid
 import dataclasses
 import heapq
@@ -29,7 +29,8 @@ class VLMImageQuality(CogBase):
     def __init__(
         self,
         options: list[OptionBase],
-        name: str = "image_downsample",
+        name: str = "ImageQuality",
+        default_option: Union[int, str] = 0,
         module_name: str = None,
         inherit: bool = True,
     ):
@@ -38,14 +39,8 @@ class VLMImageQuality(CogBase):
             options,
             0,
             module_name,
-            inherit=inherit,
-            inherit_options=False,
+            inherit=inherit
         )
-
-
-
-    def _evolve(self, eval_result) -> EvolveType:
-        pass
 
     @classmethod
     def from_dict(cls, data: dict):
@@ -55,11 +50,12 @@ class VLMImageQuality(CogBase):
             data["default_option"],
             data["options"],
         )
+
         options = [
-            # TODO: implement this
-            # ReasonThenFormat.registry[dat["type"]].from_dict(dat)
-            # for name, dat in options.items()
+            ImageQualityMeta.registry[dat["type"]].from_dict(dat)
+            for name, dat in options.items()
         ]
+
         return cls(
             name=name,
             options=options,
@@ -76,10 +72,10 @@ class ImageQualityMeta(ABCMeta):
         cls.registry[name] = new_cls
         return new_cls
 
-    def setting():
-        pass
 
 class LowQuality(OptionBase, metaclass=ImageQualityMeta):
+    def __init__(self):
+        super().__init__("LowQualityImage")
 
     def describe(self):
         desc = "- Image Quality: Low - \n"
@@ -91,10 +87,16 @@ class LowQuality(OptionBase, metaclass=ImageQualityMeta):
 
     def apply(self, lm_module: Model):
         lm_module.image_downsample = "low"
-        print("test cog for img quality: low")
         return lm_module
+    
+    @classmethod
+    def from_dict(cls, data: dict):
+        return cls()
 
 class HighQuality(OptionBase, metaclass=ImageQualityMeta):
+    def __init__(self):
+        super().__init__("HighQualityImage")
+
     def describe(self):
         desc = "- Image Quality: High - \n"
         return desc
@@ -105,5 +107,8 @@ class HighQuality(OptionBase, metaclass=ImageQualityMeta):
 
     def apply(self, lm_module: Model):
         lm_module.image_downsample = "high"
-        print("test cog for img quality: high")
         return lm_module
+    
+    @classmethod
+    def from_dict(cls, data: dict):
+        return cls()

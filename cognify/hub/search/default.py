@@ -246,7 +246,7 @@ def create_search(
     
     if n_trials is None:
         if search_type == "light":
-            n_trials = 3 # for cog test
+            n_trials = 10 # for cog test
         elif search_type == "medium":
             n_trials = 45
         elif search_type == "heavy":
