@@ -63,7 +63,7 @@ Provide a score between 0 and 10.
 import json
 import random
 
-subset_size=100 # for cog test just use 100
+subset_size=50 # for cog test just use 50
 
 
 @cognify.register_data_loader
