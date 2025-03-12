@@ -183,3 +183,4 @@ examples/**/*.json
 *.cog
 cache/
 local_cache/
+examples/Visual-Question-Answering/VQA-sub-sampled/
