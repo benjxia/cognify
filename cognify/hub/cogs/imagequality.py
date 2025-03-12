@@ -29,7 +29,7 @@ class VLMImageQuality(CogBase):
     def __init__(
         self,
         options: list[OptionBase],
-        name: str = "image_downsample",
+        name: str = "ImageQuality",
         module_name: str = None,
         inherit: bool = True,
     ):
@@ -75,6 +75,8 @@ class ImageQualityMeta(ABCMeta):
         pass
 
 class LowQuality(OptionBase, metaclass=ImageQualityMeta):
+    def __init__(self):
+        super().__init__("LowQualityImage")
 
     def describe(self):
         desc = "- Image Quality: Low - \n"
@@ -89,6 +91,9 @@ class LowQuality(OptionBase, metaclass=ImageQualityMeta):
         return lm_module
 
 class HighQuality(OptionBase, metaclass=ImageQualityMeta):
+    def __init__(self):
+        super().__init__("HighQualityImage")
+
     def describe(self):
         desc = "- Image Quality: High - \n"
         return desc
