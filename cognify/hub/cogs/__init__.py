@@ -20,6 +20,7 @@ ModelOption = _LazyModule("cognify.hub.cogs.model_selection.ModelOption")
 LMReasoning = _LazyModule("cognify.hub.cogs.reasoning.LMReasoning")
 ZeroShotCoT = _LazyModule("cognify.hub.cogs.reasoning.ZeroShotCoT")
 PlanBefore = _LazyModule("cognify.hub.cogs.reasoning.PlanBefore")
+VisionPlanning = _LazyModule("cognify.hub.cogs.reasoning.VisionPlanning")
 
 TreeOfThought = _LazyModule("cognify.hub.cogs.tree_of_thoughts.tot.TreeOfThought")
 
@@ -42,5 +43,6 @@ __all__ = [
     "ZeroShotCoT",
     "PlanBefore",
     "TreeOfThought",
+    "VisionPlanning",
      "VLMImageQuality",
 ]

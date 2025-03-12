@@ -5,7 +5,7 @@ from cognify.optimizer.core import driver, flow
 from cognify.hub.cogs import reasoning, ensemble, model_selection
 from cognify.hub.cogs.common import NoChange
 from cognify.hub.cogs.fewshot import LMFewShot
-from cognify.hub.cogs.reasoning import ZeroShotCoT, PlanBefore
+from cognify.hub.cogs.reasoning import ZeroShotCoT, PlanBefore, VisionPlanning
 from cognify.hub.cogs.imagequality import VLMImageQuality, LowQuality, HighQuality
 from cognify.optimizer.control_param import ControlParameter, SelectedObjectives
 from dataclasses import dataclass
@@ -23,7 +23,7 @@ class SearchParams:
 
 def create_CogTest_search(search_params: SearchParams) -> ControlParameter:
     # Reasoning Parameter
-    reasoning_param = reasoning.LMReasoning([NoChange(), ZeroShotCoT()])
+    reasoning_param = reasoning.LMReasoning([NoChange(), VisionPlanning()])
 
     # Few Shot Parameter
     few_shot_params = LMFewShot(2)

@@ -70,7 +70,7 @@ def capture_module_from_fs(module_path: str, mode: Literal["config", "score", "w
             if hasattr(v, '__file__') and v.__file__ and v.__file__.startswith(current_directory):
                 if v.__name__ != '__main__':
                     to_reload.append(v)
-    
+
         # TODO: https://github.com/GenseeAI/cognify/issues/34
         # for mod in to_reload:
         #     importlib.reload(mod)
@@ -91,13 +91,13 @@ def translate_workflow(module):
     is_langchain = False
     is_dspy = False
     named_runnables = defaultdict(int)
-    
+
     # lazy import
     import dspy
     from cognify.frontends.dspy.connector import PredictModel
     from cognify.frontends.langchain.connector import RunnableModel
     from langchain_core.runnables import RunnableSequence
-    
+
     # check if user has manually wrapped their runnables
     is_manually_translated = False
     for k, v in module.__dict__.items():
