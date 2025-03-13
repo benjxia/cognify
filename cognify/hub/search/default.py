@@ -5,8 +5,9 @@ from cognify.optimizer.core import driver, flow
 from cognify.hub.cogs import reasoning, ensemble, model_selection
 from cognify.hub.cogs.common import NoChange
 from cognify.hub.cogs.fewshot import LMFewShot
-from cognify.hub.cogs.reasoning import ZeroShotCoT, PlanBefore, VisionPlanning
+from cognify.hub.cogs.reasoning import ZeroShotCoT, PlanBefore
 from cognify.hub.cogs.imagequality import VLMImageQuality, LowQuality, HighQuality
+from cognify.hub.cogs.gencontext import GenerateContext, DefaultImageContext, VisionPlanningContext
 from cognify.optimizer.control_param import ControlParameter, SelectedObjectives
 from dataclasses import dataclass
 
@@ -22,11 +23,10 @@ class SearchParams:
     model_selection_cog: model_selection.LMSelection = None
 
 def create_CogTest_search(search_params: SearchParams) -> ControlParameter:
-    # Reasoning Parameter
-    reasoning_param = reasoning.LMReasoning([NoChange(), VisionPlanning()])
+    # # Reasoning Parameter
+    # reasoning_param = reasoning.LMReasoning([NoChange()])
 
-    # Few Shot Parameter
-    few_shot_params = LMFewShot(2)
+    gencontext_param = GenerateContext([NoChange(), DefaultImageContext(), VisionPlanningContext()])
 
     # Image Quality
     image_quality = VLMImageQuality([NoChange(), LowQuality(), HighQuality()])
@@ -35,7 +35,7 @@ def create_CogTest_search(search_params: SearchParams) -> ControlParameter:
     inner_opt_config = flow.OptConfig(
         n_trials=search_params.n_trials,
     )
-    params = [few_shot_params, reasoning_param, image_quality]
+    params = [gencontext_param, image_quality]
     if search_params.model_selection_cog is not None:
         params.append(search_params.model_selection_cog)
     inner_loop_config = driver.LayerConfig(
@@ -246,7 +246,7 @@ def create_search(
 
     if n_trials is None:
         if search_type == "light":
-            n_trials = 10 # for cog test
+            n_trials = 5 # for cog test
         elif search_type == "medium":
             n_trials = 45
         elif search_type == "heavy":

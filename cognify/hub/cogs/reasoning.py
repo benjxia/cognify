@@ -197,70 +197,68 @@ class PlanBefore(ReasonThenFormat):
         response = litellm_completion(model, chat_messages, model_kwargs)
         return [response]
 
-class VisionPlanning(ReasonThenFormat):
-    def __init__(self):
-        super().__init__("VisionPlanning")
+# class VisionPlanning(ReasonThenFormat):
+#     def __init__(self):
+#         super().__init__("VisionPlanning")
 
-    def _get_cost_indicator(self):
-        return 3.0
+#     def _get_cost_indicator(self):
+#         return 3.0
 
-    def describe(self):
-        desc = """
-        - Vision Planning -
-        Return step-by-step reasoning for the given chat prompt messages.
+#     def describe(self):
+#         desc = """
+#         - Vision Planning -
+#         Return step-by-step reasoning for the given chat prompt messages.
 
-        Reasoning Prompt:
-            Let's solve this problem step by step before giving the final response.
-        """
-        return desc
+#         Reasoning Prompt:
+#             Let's solve this problem step by step before giving the final response.
+#         """
+#         return desc
 
-    def reasoning_step(
-        self, model: str, chat_messages: List[APICompatibleMessage], model_kwargs: dict
-    ) -> List[ModelResponse]:
-        has_image = False
-        for message in chat_messages:
-            for item in message["content"]:
-                if item["type"] == "image_url":
-                    has_image = True
-                    break
-            if has_image:
-                break
+#     def reasoning_step(
+#         self, model: str, chat_messages: List[APICompatibleMessage], model_kwargs: dict
+#     ) -> List[ModelResponse]:
+#         has_image = False
+#         for message in chat_messages:
+#             for item in message["content"]:
+#                 if item["type"] == "image_url":
+#                     has_image = True
+#                     break
+#             if has_image:
+#                 break
 
-        if not has_image:
-            # TODO: raise warning message about missing image
-            # TODO: or default to some other reasoning cog option
-            return []
+#         if not has_image:
+#             return []
 
-        responses = []
+#         responses = []
 
-        reasoning_messages = chat_messages.copy()
+#         reasoning_messages = chat_messages.copy()
 
-        reasoning_messages.append(
-            {
-                "role": "user",
-                "content": "Generate a detailed caption about the image(s) provided.\n",
-            }
-        )
+#         reasoning_messages.append(
+#             {
+#                 "role": "user",
+#                 "content": "Generate a detailed caption about the image(s) provided. If there are multiple images, give a description in a numbered list.\n",
+#             }
+#         )
 
-        caption_response = litellm_completion(model, reasoning_messages, model_kwargs)
-        reasoning_messages.pop(-1) # Remove prompt from reasoning_messages
-        responses.append(caption_response)
+#         caption_response = litellm_completion(model, reasoning_messages, model_kwargs)
+#         reasoning_messages.pop(-1) # Remove prompt from reasoning_messages
+#         responses.append(caption_response)
 
-        # Add model response to context
-        reasoning_messages.append(
-            {
-                "role": "assistant",
-                "content": "Image Caption: " + caption_response.choices[0].message.content + "\n",
-            }
-        )
+#         # Add model response to context
+#         reasoning_messages.append(
+#             {
+#                 "role": "assistant",
+#                 "content": "Image Caption: " + caption_response.choices[0].message.content + "\n",
+#             }
+#         )
 
-        reasoning_messages.append(
-            {
-                "role": "user",
-                "content": "Generate sub-questions about the image(s) provided. You may use the provided image caption. Clearly state each sub-question and provide your response to each one of them.\n",
-            }
-        )
+#         reasoning_messages.append(
+#             {
+#                 "role": "user",
+#                 "content": "Generate sub-questions about the image(s) provided. You may use the provided image caption. Clearly state each sub-question and provide your response to each one of them.\n",
+#             }
+#         )
 
-        responses.append(litellm_completion(model, reasoning_messages, model_kwargs))
+#         responses.append(litellm_completion(model, reasoning_messages, model_kwargs))
 
-        return responses
+#         return responses

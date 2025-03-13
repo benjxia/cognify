@@ -39,6 +39,9 @@ def _local_forward(
     inputs: Dict[str, str],
     model_kwargs: Optional[dict] = None,
 ) -> str:
+    if _local_lm.gencontext:
+        messages = _local_lm.gencontext.forward(_local_lm, messages, model_kwargs)
+
     if _local_lm.reasoning:
         responses = _local_lm.reasoning.forward(
             _local_lm, messages, model_kwargs
@@ -128,6 +131,7 @@ class Model(Module):
         self.demo_messages: List[CompletionMessage] = []
         self.response_metadata_history: List[ResponseMetadata] = []
         self.steps: List[StepInfo] = []
+        self.gencontext = None
         self.reasoning = None
         self.rationale = None
         self.image_downsample: Literal["auto", "low", "high"] = "auto"
@@ -530,9 +534,9 @@ class StructuredModel(Model):
             model = model_kwargs.pop("model")
 
             response = litellm_completion(
-                model, 
-                self._get_api_compatible_messages(messages), 
-                model_kwargs, 
+                model,
+                self._get_api_compatible_messages(messages),
+                model_kwargs,
                 response_format=self.output_format.schema
             )
             return response
