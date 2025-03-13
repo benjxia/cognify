@@ -243,17 +243,10 @@ def create_search(
                 model_selection_options,
             )
         assert isinstance(model_selection_cog, model_selection.LMSelection)
-<<<<<<< HEAD
-    
-    if n_trials is None:
-        if search_type == "light":
-            n_trials = 10
-=======
 
     if n_trials is None:
         if search_type == "light":
             n_trials = 10 # for cog test
->>>>>>> image-caption-workflow
         elif search_type == "medium":
             n_trials = 45
         elif search_type == "heavy":
@@ -275,12 +268,8 @@ def create_search(
     trace_default_search(search_type, quality_constraint, list(set(objectives)))
 
     if search_type == "light":
-<<<<<<< HEAD
-        return create_light_search(search_params)
-=======
         # return create_light_search(search_params)
         return create_CogTest_search(search_params) # for cog test
->>>>>>> image-caption-workflow
     elif search_type == "medium":
         return create_medium_search(search_params)
     elif search_type == "heavy":

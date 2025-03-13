@@ -148,13 +148,8 @@ class ZeroShotCoT(ReasonThenFormat):
         desc = """
         - ZeroShotCoT -
         Return step-by-step reasoning for the given chat prompt messages.
-<<<<<<< HEAD
-        
-        Reasoning Prompt: 
-=======
 
         Reasoning Prompt:
->>>>>>> image-caption-workflow
             Let's solve this problem step by step before giving the final response.
         """
         return desc
