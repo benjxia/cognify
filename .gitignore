@@ -189,3 +189,4 @@ examples/Visual-Question-Answering/VQA-sub-sampled.zip
 # datasets
 examples/image-captioning/TextCaps/*
 examples/image-captioning/example.env
+*.jpg

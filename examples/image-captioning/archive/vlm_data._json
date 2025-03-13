@@ -1,6 +1,0 @@
-[
-    {
-        "image_path": "test_image.jpg",
-        "expected_caption": "A dog jumping to catch a tennis ball."
-    }
-]
