@@ -264,3 +264,244 @@ class VisionPlanning(ReasonThenFormat):
         responses.append(litellm_completion(model, reasoning_messages, model_kwargs))
 
         return responses
+
+
+class VLMQueryRewriting(ReasonThenFormat):
+    def __init__(self):
+        super().__init__("VLMQueryRewriting")
+
+    def _get_cost_indicator(self):
+        return 3.0
+
+    def describe(self):
+        desc = """
+        - VLM Query Rewriting -
+        Get a Caption of an image, and re-write the query based on the caption. 
+        Based on the following paper: https://arxiv.org/pdf/2311.09050
+
+        No promp engineering per se
+        """
+        return desc
+
+    def reasoning_step(
+        self, model: str, chat_messages: List[APICompatibleMessage], model_kwargs: dict
+    ) -> List[ModelResponse]:
+        has_image = False
+        for message in chat_messages:
+            for item in message["content"]:
+                if item["type"] == "image_url":
+                    has_image = True
+                    break
+            if has_image:
+                break
+
+        if not has_image:
+            # TODO: raise warning message about missing image
+            # TODO: or default to some other reasoning cog option
+            return []
+
+        responses = []
+
+        reasoning_messages = chat_messages.copy()
+
+        reasoning_messages.append(
+            {
+                "role": "user",
+                "content": "Generate a detailed caption about the image(s) provided.\n",
+            }
+        )
+
+        caption_response = litellm_completion(model, reasoning_messages, model_kwargs)
+        
+        caption = caption_response.choices[0].message.content
+        print("caption", caption)
+
+        initial_query = model_kwargs["prompt"]
+        print("initial_query", initial_query)
+
+        new_query = reWriteQuery(caption, initial_query)
+        print("new_query", new_query)
+
+        # Create a new chat message with the rewritten query
+        rewritten_query_message = {
+            "role": "user",
+            "content": new_query
+        }
+
+        # Get a completion from the model using the rewritten query
+        model_kwargs.pop("prompt") # Remove prompt from model_kwargs
+        response = litellm_completion(model, [rewritten_query_message], model_kwargs)
+        
+        return [response]
+
+
+
+# TODO: Move the following to a seperate file and import here
+# TODO: Rather than calling a certain type of GPT via Langchain directly, call the model specified within the Cog instead 
+from langchain_openai import ChatOpenAI
+from langchain_core.prompts import ChatPromptTemplate
+from langchain.output_parsers import PydanticOutputParser
+from pydantic import BaseModel, validator
+import dotenv
+import os
+from typing import List
+
+
+from constituent_treelib import ConstituentTree, Language
+# Define the language for the sentence as well as for the spaCy and benepar models
+language = Language.English
+# Define which specific SpaCy model should be used (default is Medium)
+spacy_model_size = ConstituentTree.SpacyModelSize.Medium
+# Create the pipeline (note, the required models will be downloaded and installed automatically)
+nlp = ConstituentTree.create_pipeline(language, spacy_model_size)
+# Your sentence
+
+
+def reWriteQuery(caption: str, question: str) -> str:
+    ''' 
+    The "main meat" function of VLM Query Rewriting cog
+
+    Given
+    * a caption like "a clock above a building with clouds and lightning background"
+    * a question like "what unpleasant emotion does this weather phenomenon evoke?"
+
+    Return
+    * the best question rewrite like 'what unpleasant emotion does lightning background evoke?'
+    This is useful since it substitutes a vague question with a more specific one based on the image caption
+    '''
+    caption_constituents = get_constituents(caption)
+    question_constituents = get_constituents(question)
+    questions = get_all_possible_question_rewrites(question, caption_constituents, question_constituents)
+    best_question = choose_the_best_questions(question, questions)
+    return best_question
+
+def get_constituents(sentence: str) -> list[str]:
+    '''Given a sentence like "a clock above a building with clouds and lightning background" 
+    return all possible constituents like ["a clock", "a building", "clouds", "lightning background"]'''
+    tree = ConstituentTree(sentence, nlp)
+    all_phrases = tree.extract_all_phrases(min_words_in_phrases=1)
+    return all_phrases["NP"]
+
+def get_all_possible_question_rewrites(question : str, 
+                                       caption_constituents : list[str], 
+                                       question_constituents : list[str]) -> list[str]:
+    
+    '''
+    Given 
+    * a question like "what unpleasant emotion does this weather phenomenon evoke?" 
+    * caption constituents like ["a clock", "a building", "clouds", "lightning background"]
+    * question constituents like ["the color of the clock", "the time on the clock", "the material of the clock"], 
+    
+    return all possible questions like
+    [
+        'what unpleasant emotion does clouds evoke?', 
+        'what unpleasant emotion does a clock evoke?', 
+        'what unpleasant emotion does lightning background evoke?'
+    ]
+    '''
+    questions = []
+    for q in question_constituents:
+        for c in caption_constituents:
+            new_sentence = question.replace(q, c)
+            questions.append(new_sentence)
+
+    return questions
+
+def choose_the_best_questions(original_question: str, all_possible_sentences: List[str]) -> str:
+    ''' 
+    Given 
+    * the original question like "what unpleasant emotion does this weather phenomenon evoke?"
+    * a list of all possible questions rewrites like:
+        [
+            'what unpleasant emotion does clouds evoke?', 
+            'what unpleasant emotion does a clock evoke?', 
+            'what unpleasant emotion does lightning background evoke?'
+        ]
+
+    Return 
+    * the best question rewrite like 'what unpleasant emotion does lightning background evoke?'
+
+    The definition of "best" is the one that is most relevant to the original question 
+    (eg. the subtitution of constituents makes sense in the context of the question and preserves the original intent)
+
+    '''
+
+    model = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+
+    # sentence_assessments is a list of scores (scores are wrapped in RelevanceAssessment objects)
+    sentence_assessments = assess_relevance_batch(original_question, all_possible_sentences, model)
+
+    # Find the sentence with the highest relevance score
+    best_sentence = None
+    best_score = -1
+    best_index = -1
+
+    for i, assessment in enumerate(sentence_assessments):
+        if assessment.score > best_score:
+            best_score = assessment.score
+            best_sentence = all_possible_sentences[i]
+            best_index = i
+
+    print(f"LLM chose index {best_index} with score {best_score} because: {sentence_assessments[best_index].reason}")
+
+    if best_sentence is None:
+        print("No sentences were assessed. Returning the first question.")
+        return all_possible_sentences[0]
+
+    return best_sentence
+
+
+
+
+# Below are just a hardcoded call to chatGPT using Langchain 
+# So we can ensure it returns a correct pedantric numerical output
+
+class RelevanceAssessment(BaseModel):
+    score: int
+    reason: str
+
+    @validator('score')
+    def score_must_be_in_range(cls, value):
+        if not 1 <= value <= 10:
+            raise ValueError('Score must be between 1 and 10')
+        return value
+
+class BatchRelevanceAssessment(BaseModel):
+    assessments: List[RelevanceAssessment]
+
+parser = PydanticOutputParser(pydantic_object=BatchRelevanceAssessment)
+
+
+def assess_relevance_batch(original_question: str, new_questions: List[str], model: ChatOpenAI) -> List[RelevanceAssessment]:
+    """Assesses the relevance of a batch of new questions compared to the original."""
+
+    prompt = ChatPromptTemplate.from_messages(
+        [
+            ("system", """You are an expert in language and reasoning. 
+             Your task is to assess how well each new question retains the meaning and intent of the original question,
+             considering a substitution that has been made.
+             For each new question, compare the original question to the new question. Think step by step about whether the substitution makes sense
+             in the context of the question and whether it preserves the original intent.
+             Provide a score from 1 to 10 for each new question, where 1 means the new question is completely irrelevant to the original,
+             and 10 means the new question is perfectly relevant and retains the original intent.
+             Explain your reasoning for each question in a short sentence.
+
+             Return a JSON array of objects, where each object has a "score" and a "reason" field.
+             The scores must be between 1 and 10 (inclusive).
+             Your response format should be: {format_instructions}
+             """),
+            ("human", "Original question: {original_question}\nNew questions:\n{new_questions}")
+        ]
+    )
+
+    chain = prompt | model | parser
+
+    # Format the new questions for the prompt
+    formatted_questions = "\n".join([f"{i+1}. {q}" for i, q in enumerate(new_questions)])
+
+    input = {"original_question": original_question,
+             "new_questions": formatted_questions,
+             "format_instructions": parser.get_format_instructions()}
+
+    output = chain.invoke(input)
+    return output.assessments
