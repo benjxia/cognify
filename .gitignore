@@ -184,3 +184,4 @@ examples/**/*.json
 cache/
 local_cache/
 examples/Visual-Question-Answering/VQA-sub-sampled/
+examples/Visual-Question-Answering/VQA-sub-sampled.zip
