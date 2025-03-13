@@ -23,13 +23,112 @@ model = ChatOpenAI(model="gpt-4o-mini", temperature=0)
 
 from langchain.output_parsers import PydanticOutputParser
 
+# for other metric data
+import numpy as np
+import nltk
+from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
+from nltk.tokenize import word_tokenize
+from nltk.corpus import wordnet, stopwords
+from collections import Counter
+import re
+from typing import List, Union, Dict
 
+# Lemmatizer and stopword removal
+lemmatizer = nltk.WordNetLemmatizer()
+stop_words = set(stopwords.words('english'))
 
 @dataclass
 class Assessment(BaseModel):
     score: int
 
 parser = PydanticOutputParser(pydantic_object=Assessment)
+
+
+def preprocess_text(text: str) -> List[str]:
+    # Tokenize, lowercase, and lemmatize
+    tokens = word_tokenize(text.lower())  
+    return [lemmatizer.lemmatize(token) for token in tokens if token not in stop_words]
+
+# Function for synonym matching using WordNet
+def get_synonyms(word: str) -> set:
+    synonyms = set()
+    for syn in wordnet.synsets(word):
+        for lemma in syn.lemmas():
+            synonyms.add(lemma.name().lower())
+    return synonyms
+
+# BLEU Evaluator with smoothing
+def bleu_evaluator(workflow_input: str, workflow_output: str, ground_truth: str) -> float:
+    smoothing = SmoothingFunction().method2 # improved smoothing
+    weights = (0.25, 0.25, 0.25, 0.25)
+    
+    reference_tokens = [preprocess_text(ground_truth)]
+    candidate_tokens = preprocess_text(workflow_output)
+    
+    try:
+        score = sentence_bleu(reference_tokens, 
+                            candidate_tokens,
+                            weights=weights,
+                            smoothing_function=smoothing)
+
+        score = score * 10 # score scaling
+    except Exception:
+        score = 0.0
+        
+    return score
+
+# METEOR Evaluator with synonym matching
+def meteor_evaluator(workflow_input: str, workflow_output: str, ground_truth: str) -> float:
+    reference_tokens = preprocess_text(ground_truth)
+    candidate_tokens = preprocess_text(workflow_output)
+
+    # Count the matches, considering synonyms
+    matches = 0
+    for c_token in candidate_tokens:
+        if c_token in reference_tokens or any(synonym in reference_tokens for synonym in get_synonyms(c_token)):
+            matches += 1
+
+    precision = matches / len(candidate_tokens) if candidate_tokens else 0
+    recall = matches / len(reference_tokens) if reference_tokens else 0
+
+    # F1 Score
+    if precision + recall == 0:
+        return 0.0
+    meteor = 2 * (precision * recall) / (precision + recall)
+    
+    return meteor * 10
+
+# CIDEr Evaluator with tokenization and synonym matching
+def cider_evaluator(workflow_input: str, workflow_output: str, ground_truth: str) -> float:
+    def get_ngrams(tokens: List[str], n: int = 4) -> Counter:
+        return Counter([' '.join(tokens[i:i+n]) for i in range(len(tokens)-n+1)])
+
+    candidate_tokens = preprocess_text(workflow_output)
+    reference_tokens = preprocess_text(ground_truth)
+
+    # TF-IDF Weight (simplified)
+    doc_freq = Counter()
+    doc_freq.update(get_ngrams(reference_tokens))
+
+    # n-gram vectors for candidate and reference
+    cand_vec = get_ngrams(candidate_tokens)
+    ref_vec = get_ngrams(reference_tokens)
+
+    # Cosine Similarity calculation with synonym matching
+    numerator = sum((cand_vec[gram] * ref_vec[gram]) / (doc_freq[gram] + 1) 
+                   for gram in set(cand_vec) & set(ref_vec))
+
+    denom_cand = np.sqrt(sum((cand_vec[gram] / (doc_freq[gram] + 1))**2 
+                            for gram in cand_vec))
+    denom_ref = np.sqrt(sum((ref_vec[gram] / (doc_freq[gram] + 1))**2 
+                           for gram in ref_vec))
+
+    if denom_cand * denom_ref == 0:
+        return 0.0
+
+    score = numerator / (denom_cand * denom_ref)
+    return score * 10
+
 
 @cognify.register_evaluator
 def vlm_judge(workflow_input, workflow_output, ground_truth):
@@ -55,6 +154,17 @@ Provide a score between 0 and 10.
             "format_instructions": parser.get_format_instructions(),
         }
     )
+
+    # get other metric data
+    with open('evaluation_scores.txt', 'a') as file:
+        file.write(f"BLEU Score: {bleu_evaluator(workflow_input, workflow_output, ground_truth):.2f}/10\n")
+        file.write(f"METEOR Score: {meteor_evaluator(workflow_input, workflow_output, ground_truth):.2f}/10\n")
+        file.write(f"CIDEr Score: {cider_evaluator(workflow_input, workflow_output, ground_truth):.2f}/10\n")
+        file.write(f"output: {workflow_output}\n expected: {ground_truth}\n")
+
+        file.write("\n")  
+
+
     return assess.score
 
 

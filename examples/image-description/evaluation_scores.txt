@@ -1,0 +1,313 @@
+BLEU Score: 0.44/10
+METEOR Score: 2.22/10
+CIDEr Score: 0.00/10
+output: A woman seated at a desk using a Franklin PC-8000 computer, which features a monitor displaying green text on a black background. The promotional text highlights the computer's IBM compatibility and built-in features at a low price.
+ expected: In this image we can see an advertisement and the picture of woman working at the desktop.
+
+BLEU Score: 0.43/10
+METEOR Score: 3.67/10
+CIDEr Score: 0.00/10
+output: A woman with glasses and a turquoise necklace is playing a guitar while sitting outdoors at night. She appears to be focused on her playing, with one hand on the guitar's neck and the other hand near her mouth, possibly adjusting her position or expression. The background is dimly lit, suggesting a relaxed evening atmosphere.
+ expected: This picture there is a woman holding a guitar in her hands and she is placing cigarette in her mouth. She is wearing spectacles.
+
+BLEU Score: 0.62/10
+METEOR Score: 3.33/10
+CIDEr Score: 0.00/10
+output: A close-up image of a cheetah's face, with its distinctive spotted fur and intense gaze, set against a blurred background of green grass and trees in a zoo environment.
+ expected: "In this image I can see a cheetah which is brown, black and cream in color is standing on the ground. I can see some grass on the ground, few trees, few white colored flowers, the wall and the sky in the background."
+
+BLEU Score: 0.37/10
+METEOR Score: 1.96/10
+CIDEr Score: 0.00/10
+output: A group of four adults and one child are engaged in a friendly conversation outdoors, surrounded by greenery. The adults are smiling and appear to be enjoying each other's company, while the child stands close to one of the adults, looking up at them. The women are dressed in colorful attire, and the man is wearing a light blue shirt.
+ expected: In this image there are a few people standing. They are smiling. Behind them there are plants. To the left there is a wall.
+
+BLEU Score: 0.56/10
+METEOR Score: 4.14/10
+CIDEr Score: 0.00/10
+output: A rescue helicopter, painted in yellow and red, hovers above a body of water while lowering a rescuer on a rope to assist someone below. In the background, there are several boats on the water and a green shoreline. The sky is overcast, creating a muted atmosphere.
+ expected: "In the middle of the image there is a helicopter and few people are hanging from helicopter. Behind the helicopter there are some clouds and sky. Bottom of the image there is water, on the water there are some ships. Top left side of the image there are some hills."
+
+BLEU Score: 0.59/10
+METEOR Score: 6.03/10
+CIDEr Score: 0.00/10
+output: A group of three individuals is seated in front of a computer in a room with a sign that reads "Mise en Scène." The two individuals on the left are smiling and looking at the camera, while the person on the right is also facing the camera. The computer screen displays the word "WikiLeaks." Various equipment is visible on the table, including a camera and cables.
+ expected: "In this image there are two girls on the left side and a man on the right side. In front of them there is a table on which there is a computer keyboard,c. p. u,speakers and a camera. In the background there is a wall to which there are posters."
+
+BLEU Score: 0.42/10
+METEOR Score: 2.46/10
+CIDEr Score: 0.00/10
+output: A group of musicians performing on stage, featuring a man with glasses playing an acoustic guitar, flanked by several singers. The scene is illuminated with purple lighting, creating a vibrant atmosphere. Music stands with sheet music are visible, indicating a live performance setting.
+ expected: In this image there are a group of people who are standing and there are some mikes in front of them and in the center there is one person who is standing and he is playing a guitar and it seems that he is singing. On the bottom of the right corner there is one board.
+
+BLEU Score: 1.38/10
+METEOR Score: 4.00/10
+CIDEr Score: 0.00/10
+output: A butterfly resting on green leaves among branches, with a blurred natural background.
+ expected: "in this image we can see stems, leaves and butterfly."
+
+BLEU Score: 0.33/10
+METEOR Score: 1.62/10
+CIDEr Score: 0.00/10
+output: A plush toy resembling a gray donkey with a black mane, sitting down with its head lowered. The toy has visible stitching and markings on its body, giving it a handmade appearance. The background is a soft, light color, emphasizing the toy.
+ expected: In this image we can see a doll placed on the floor.
+
+BLEU Score: 0.47/10
+METEOR Score: 2.95/10
+CIDEr Score: 0.00/10
+output: A live music performance featuring a female vocalist in a pink dress, standing at a microphone. Behind her, a male musician plays the bass guitar, while another male musician is seated at a drum set. The stage is equipped with various musical instruments and amplifiers, creating a vibrant concert atmosphere.
+ expected: "In this image we can see three persons playing musical instruments, there are mice, black color objects and an object looks like a speaker and a dark background."
+
+BLEU Score: 0.90/10
+METEOR Score: 5.11/10
+CIDEr Score: 0.00/10
+output: A man is standing on a wooden deck, holding a fishing rod and looking towards a small child who is standing near the edge of a pond surrounded by tall green plants. The child is focused on the water, while the man appears to be guiding or assisting him.
+ expected: This picture is clicked outside. In the foreground there is a kid and a man standing on the wooden planks and we can see the plants. In the background there is a wall and the ground.
+
+BLEU Score: 0.58/10
+METEOR Score: 3.33/10
+CIDEr Score: 0.00/10
+output: A soccer match scene showing a player in a blue jersey on the ground, appearing to be injured, while a player in a red jersey stands nearby. The background features a crowd of spectators and advertising banners.
+ expected: "In this picture there are sportsmen on the right and left side of the image, on the grassland and there are people those who are sitting in the background area of the image, as audience, there are posters in the background area of the image."
+
+BLEU Score: 0.74/10
+METEOR Score: 5.33/10
+CIDEr Score: 0.00/10
+output: A close-up image of a bowl of noodles in a dark broth, with red chopsticks resting on the edge of the bowl. The noodles are curly and submerged in the liquid, with a blurred background.
+ expected: In this picture we can see a bowl with chopsticks and noodles in it and this bowl is placed on a table.
+
+BLEU Score: 0.62/10
+METEOR Score: 3.82/10
+CIDEr Score: 0.00/10
+output: A football match scene featuring two players in action. One player, wearing a black and white striped jersey with the number 10, is attempting to control the ball while being closely pursued by an opponent in a red and black striped jersey. The background shows a football club setting with spectators and advertisements. The field appears muddy, indicating recent play.
+ expected: People are playing football. There is a yellow ball at the left. 2 people at the left are wearing black and white t shirts and 2 people are wearing black and red t shirts.
+
+BLEU Score: 0.78/10
+METEOR Score: 1.60/10
+CIDEr Score: 0.00/10
+output: A cluster of round, pale green fruits hanging from the trunk of a palm-like plant, surrounded by lush green foliage.
+ expected: In the picture I can see trees. I can also see fruits on a tree.
+
+BLEU Score: 0.52/10
+METEOR Score: 3.69/10
+CIDEr Score: 0.00/10
+output: A cozy corner of a room featuring a black armchair with a decorative pillow, a small wooden side table with a lamp, and a wall-mounted television. A desk with stationery is also visible, along with a sloped ceiling and a skylight allowing natural light to enter.
+ expected: "In this image I see a room and I see the couch over here on which there are pillows and I see a lamp and 2 things on this table and I can also see another table over here on which there are few things and I see a chair which is of black in color and I see the floor, over here I see a white and black color board and I see the boxes over here."
+
+BLEU Score: 0.67/10
+METEOR Score: 4.62/10
+CIDEr Score: 0.00/10
+output: A woman with long blonde hair is sitting in the driver's seat of a black car, eating something while parked. The background features greenery, and part of a pole is visible on the right side of the image.
+ expected: in this image the woman is sitting in the car the other side the plant is there in the grassy land and she is holding some cloth and the background is very greenery.
+
+BLEU Score: 0.44/10
+METEOR Score: 2.62/10
+CIDEr Score: 0.00/10
+output: A beautifully arranged dessert featuring two scoops of green tea ice cream, mochi balls, a portion of sweet red bean paste, and green jelly, all served in a decorative purple dish. The dessert is placed on a white plate, accompanied by two red spoons, with colorful fabric placemats in the background.
+ expected: In this image we can see the bowl of ice cream and sweets. And we can see the plastic spoons. And we can see the mobile on the table. And we can see the napkins.
+
+BLEU Score: 0.81/10
+METEOR Score: 4.83/10
+CIDEr Score: 0.00/10
+output: A man in a suit is playing a grand piano, focused on the keys. The image is in black and white, highlighting the elegance of the scene.
+ expected: "In the center we can see man sitting, in front we can see musical instrument."
+
+BLEU Score: 0.67/10
+METEOR Score: 4.76/10
+CIDEr Score: 0.00/10
+output: Three dancers are silhouetted against a backdrop illuminated by blue lights. The dancers are in various poses, with their arms raised, creating a dynamic and artistic scene in a dimly lit environment.
+ expected: "In this image I can see the dark picture in which I can see the floor, three persons dancing on the floor, few metal rods and few lights to the rods."
+
+BLEU Score: 0.62/10
+METEOR Score: 3.89/10
+CIDEr Score: 0.00/10
+output: A whimsical yellow gourd shaped like a bird, partially emerging from green grass, with a curved neck and a beak-like end. The gourd has a textured surface resembling feathers and is surrounded by blades of grass and small plants.
+ expected: "Here we can see vegetable,grass and plants."
+
+BLEU Score: 0.62/10
+METEOR Score: 3.43/10
+CIDEr Score: 0.00/10
+output: A miniature model of a traditional Japanese village, featuring small wooden houses with sloped roofs, a stone wall, and a decorative bridge over a waterway. The scene is surrounded by neatly trimmed trees and buildings in the background.
+ expected: In this picture I can see few miniatures and I can see trees and few buildings.
+
+BLEU Score: 0.67/10
+METEOR Score: 4.00/10
+CIDEr Score: 0.00/10
+output: Three people are seated in a cozy living room, each on floral-patterned sofas. A woman on the left is engaged in conversation, while two men are relaxed, one reclining with a cup in hand. Natural light filters through a window adorned with curtains, and there are framed pictures on the walls, contributing to a warm, inviting atmosphere.
+ expected: There are three people sitting in a sofa. There are two men sitting together on the same sofa. Behind them there is a window with the orange color curtains to it. To the right side top corner there are three frames. And one tv. To the left side corner there is a lamp and on the wall there is a frame.
+
+BLEU Score: 0.57/10
+METEOR Score: 3.43/10
+CIDEr Score: 0.00/10
+output: A sand sculpture festival scene featuring intricate sand sculptures, including a large figure resembling a mountain and a character drawing on a sand canvas. Surrounding the sculptures are numerous spectators, some taking photos, with tents in the background. The atmosphere is lively and festive, set on a sandy beach.
+ expected: "In this image, we can see few sand art which is made by a sand. Here there are so many people are standing. We can see some objects, dustbin, stands, boards, tents, trees. Top of the image, there is a sky."
+
+BLEU Score: 0.62/10
+METEOR Score: 2.67/10
+CIDEr Score: 0.00/10
+output: A child's hands are seen holding a black fabric while sitting at a table covered with white paper. The paper is splattered with red and blue paint, and there are two corks and a small plastic container with red and blue paint inside.
+ expected: "In this image, I can see a white cloth with plate and objects on it. It looks like a painting on a cloth. On the left side of the image, I can see a person's hands. At the top of the image, It looks like an object."
+
+BLEU Score: 1.29/10
+METEOR Score: 3.00/10
+CIDEr Score: 0.00/10
+output: A butterfly with brown and orange wings rests on a branch amidst lush green leaves.
+ expected: "in this image we can see stems, leaves and butterfly."
+
+BLEU Score: 0.98/10
+METEOR Score: 1.18/10
+CIDEr Score: 0.00/10
+output: A gray stuffed donkey toy with black yarn mane, sitting with its head down.
+ expected: In this image we can see a doll placed on the floor.
+
+BLEU Score: 0.62/10
+METEOR Score: 0.80/10
+CIDEr Score: 0.00/10
+output: A person using the Franklin PC-8000 computer, advertised as a powerful IBM-compatible machine with many built-in extras at a breakthrough low price.
+ expected: In this image we can see an advertisement and the picture of woman working at the desktop.
+
+BLEU Score: 1.73/10
+METEOR Score: 4.71/10
+CIDEr Score: 0.00/10
+output: A bowl of noodles in broth with red chopsticks resting on the edge.
+ expected: In this picture we can see a bowl with chopsticks and noodles in it and this bowl is placed on a table.
+
+BLEU Score: 0.52/10
+METEOR Score: 1.46/10
+CIDEr Score: 0.00/10
+output: A soccer match in progress with a player in a red jersey standing and a player in a blue jersey on the ground, surrounded by an engaged crowd and advertising boards.
+ expected: "In this picture there are sportsmen on the right and left side of the image, on the grassland and there are people those who are sitting in the background area of the image, as audience, there are posters in the background area of the image."
+
+BLEU Score: 0.88/10
+METEOR Score: 3.33/10
+CIDEr Score: 0.00/10
+output: Two soccer players compete for the ball during a match, with one in a black and white striped jersey and the other in a red and black striped jersey, on a grassy field.
+ expected: People are playing football. There is a yellow ball at the left. 2 people at the left are wearing black and white t shirts and 2 people are wearing black and red t shirts.
+
+BLEU Score: 1.17/10
+METEOR Score: 3.53/10
+CIDEr Score: 0.00/10
+output: A group of cats relaxes together on a blanket by a sunlit window, enjoying the warmth and comfort.
+ expected: In this picture I can see few cats are on the blankets.
+
+BLEU Score: 0.44/10
+METEOR Score: 3.14/10
+CIDEr Score: 0.00/10
+output: Three people relax and converse in a cozy living room with floral-patterned sofas, a window with curtains, and framed pictures on the wall.
+ expected: There are three people sitting in a sofa. There are two men sitting together on the same sofa. Behind them there is a window with the orange color curtains to it. To the right side top corner there are three frames. And one tv. To the left side corner there is a lamp and on the wall there is a frame.
+
+BLEU Score: 0.84/10
+METEOR Score: 3.64/10
+CIDEr Score: 0.00/10
+output: **caption:** Two soccer players in action on a muddy field, one wearing a black and white striped jersey and the other in a red and black striped jersey, competing for the ball. A football club building is visible in the background.
+ expected: People are playing football. There is a yellow ball at the left. 2 people at the left are wearing black and white t shirts and 2 people are wearing black and red t shirts.
+
+BLEU Score: 0.49/10
+METEOR Score: 3.12/10
+CIDEr Score: 0.00/10
+output: **caption:**
+A cozy attic room with a slanted ceiling, featuring a small wooden side table with a lamp, a wall-mounted TV, a black sofa with patterned cushions, and a desk with office supplies.
+ expected: "In this image I see a room and I see the couch over here on which there are pillows and I see a lamp and 2 things on this table and I can also see another table over here on which there are few things and I see a chair which is of black in color and I see the floor, over here I see a white and black color board and I see the boxes over here."
+
+BLEU Score: 0.96/10
+METEOR Score: 4.88/10
+CIDEr Score: 0.00/10
+output: A group of musicians performing on stage under purple lighting. One person is playing an acoustic guitar while others sing into microphones. The atmosphere is lively and concert-like.
+ expected: In this image there are a group of people who are standing and there are some mikes in front of them and in the center there is one person who is standing and he is playing a guitar and it seems that he is singing. On the bottom of the right corner there is one board.
+
+BLEU Score: 1.17/10
+METEOR Score: 5.00/10
+CIDEr Score: 0.00/10
+output: A man in a suit is playing the piano, focused on the keys. The image is in black and white.
+ expected: "In the center we can see man sitting, in front we can see musical instrument."
+
+BLEU Score: 0.93/10
+METEOR Score: 2.61/10
+CIDEr Score: 0.00/10
+output: A yellow, gourd-like object resembling a bird with a long neck and beak is situated among green grass and foliage.
+ expected: "Here we can see vegetable,grass and plants."
+
+BLEU Score: 0.54/10
+METEOR Score: 1.78/10
+CIDEr Score: 0.00/10
+output: A group of people is gathered in a room with a table set for a meal, featuring various dishes and drinks. They appear to be engaged in conversation, with some standing and others gesturing. The room has a decorative floor and wall art, and a French flag is visible in the background.
+ expected: This picture shows a group of people standing and we see a food items and feel bottles on the table and we see few chairs
+
+BLEU Score: 1.18/10
+METEOR Score: 5.33/10
+CIDEr Score: 0.00/10
+output: A woman is pointing and talking to a man while holding a document. They are standing outside near a building with a window and plants in the background.
+ expected: In this picture I can observe a man and woman. Woman is holding a paper in her hand. In the background I can observe a building and plants.
+
+BLEU Score: 0.92/10
+METEOR Score: 3.91/10
+CIDEr Score: 0.00/10
+output: Three people sit around a table in a cozy room with a lit fireplace, engaged in reading and writing, surrounded by books, candles, and a decorative centerpiece.
+ expected: "In this picture we can see three persons are sitting on the chairs. This is table. On the table there are books, bowl, and candles. This is floor and there is a door. Here we can see a flame."
+
+BLEU Score: 0.38/10
+METEOR Score: 2.11/10
+CIDEr Score: 0.00/10
+output: A yellow and red helicopter hovers over a body of water, with a person being hoisted up by a cable.
+ expected: "In the middle of the image there is a helicopter and few people are hanging from helicopter. Behind the helicopter there are some clouds and sky. Bottom of the image there is water, on the water there are some ships. Top left side of the image there are some hills."
+
+BLEU Score: 1.22/10
+METEOR Score: 5.38/10
+CIDEr Score: 0.00/10
+output: A person is sitting in a parked car, eating a sandwich. The car is on a road with greenery in the background.
+ expected: in this image the woman is sitting in the car the other side the plant is there in the grassy land and she is holding some cloth and the background is very greenery.
+
+BLEU Score: 1.13/10
+METEOR Score: 3.91/10
+CIDEr Score: 0.00/10
+output: Two soccer players compete for the ball on a grassy field, with one wearing a black and white striped jersey and the other in a red and black striped jersey. A third player is visible in the background.
+ expected: People are playing football. There is a yellow ball at the left. 2 people at the left are wearing black and white t shirts and 2 people are wearing black and red t shirts.
+
+BLEU Score: 1.26/10
+METEOR Score: 4.17/10
+CIDEr Score: 0.00/10
+output: A lush forest scene with moss-covered rocks and various green plants, surrounded by trees.
+ expected: "In this image I can see trees, plants and grass. Here I can see some stones."
+
+BLEU Score: 0.50/10
+METEOR Score: 3.33/10
+CIDEr Score: 0.00/10
+output: A detailed miniature model of a traditional Japanese village, featuring small wooden buildings with tiled roofs, a stone wall, and a small arched bridge over a narrow waterway. Trees and modern buildings are visible in the background.
+ expected: In this picture I can see few miniatures and I can see trees and few buildings.
+
+BLEU Score: 1.18/10
+METEOR Score: 5.33/10
+CIDEr Score: 0.00/10
+output: A woman is pointing and talking to a man while holding a document. They are standing outside near a building with a window and plants in the background.
+ expected: In this picture I can observe a man and woman. Woman is holding a paper in her hand. In the background I can observe a building and plants.
+
+BLEU Score: 0.57/10
+METEOR Score: 2.67/10
+CIDEr Score: 0.00/10
+output: A group of people is gathered in a room, standing around a table set with food and drinks. The room has a decorative interior with a flag, a plaque, and paintings on the walls. The individuals appear to be engaged in conversation, possibly at a social or formal gathering.
+ expected: This picture shows a group of people standing and we see a food items and feel bottles on the table and we see few chairs
+
+BLEU Score: 0.66/10
+METEOR Score: 2.79/10
+CIDEr Score: 0.00/10
+output: Three people sit around a table in a cozy room with a lit fireplace, engaged in reading and writing, surrounded by candles and festive greenery.
+ expected: "In this picture we can see three persons are sitting on the chairs. This is table. On the table there are books, bowl, and candles. This is floor and there is a door. Here we can see a flame."
+
+BLEU Score: 0.84/10
+METEOR Score: 2.67/10
+CIDEr Score: 0.00/10
+output: A drummer performs on an elevated platform amidst vibrant lights, smoke, and pyrotechnics during a live concert, with a large screen displaying a close-up of a performer and an enthusiastic audience in the foreground.
+ expected: "In this image there are focus lights, lighting truss, screen ,group of people, a person playing the drums on the stage , and there is a watermark on the image."
+
+BLEU Score: 0.89/10
+METEOR Score: 5.14/10
+CIDEr Score: 0.00/10
+output: A child in a pink and white striped sweater squats on the grass in a park, intently observing something on the ground, with large trees and people in the background.
+ expected: "In the foreground of the picture there is a kid playing in the grass. In the background there are trees, people, grass and building."
+
+BLEU Score: 1.23/10
+METEOR Score: 3.81/10
+CIDEr Score: 0.00/10
+output: A silver car speeds down the road, captured with motion blur.
+ expected: In the picture I can see a silver color car moving on the road and the background of the image is completely blurred.
+

@@ -48,6 +48,7 @@ def generate_caption(image_path):
     caption = caption_agent(inputs=information)
     return caption
 
+
 ##### ----- Workflow Definition ----- #####
 @cognify.register_workflow
 def vlm_workflow(workflow_input):

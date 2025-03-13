@@ -23,6 +23,13 @@ model = ChatOpenAI(model="gpt-4o-mini", temperature=0)
 
 from langchain.output_parsers import PydanticOutputParser
 
+# for other metric data
+import numpy as np
+from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
+from nltk.tokenize import word_tokenize
+from collections import Counter
+import re
+from typing import List, Union, Dict
 
 
 @dataclass
@@ -30,6 +37,102 @@ class Assessment(BaseModel):
     score: int
 
 parser = PydanticOutputParser(pydantic_object=Assessment)
+
+
+def preprocess_text(text: str) -> List[str]:
+    text = text.lower()
+    tokens = word_tokenize(text)
+    return tokens
+
+def bleu_evaluator(workflow_input: str, workflow_output: str, ground_truth: str) -> float:
+    smoothing = SmoothingFunction().method1
+    weights = (0.25, 0.25, 0.25, 0.25)
+    
+    reference_tokens = [preprocess_text(ground_truth)]
+    candidate_tokens = preprocess_text(workflow_output)
+    
+    try:
+        score = sentence_bleu(reference_tokens, 
+                            candidate_tokens,
+                            weights=weights,
+                            smoothing_function=smoothing)
+
+        score = score * 10 # score scaling
+    except Exception:
+        score = 0.0
+        
+    return score
+
+def meteor_evaluator(workflow_input: str, workflow_output: str, ground_truth: str) -> float:
+    reference_tokens = preprocess_text(ground_truth)
+    candidate_tokens = preprocess_text(workflow_output)
+    
+    # acc and recall
+    matches = 0
+    for c_token in candidate_tokens:
+        if c_token in reference_tokens:
+            matches += 1
+            
+    precision = matches / len(candidate_tokens) if candidate_tokens else 0
+    recall = matches / len(reference_tokens) if reference_tokens else 0
+    
+    # F1
+    if precision + recall == 0:
+        return 0.0
+    meteor = 2 * (precision * recall) / (precision + recall)
+
+    return meteor * 10
+
+def cider_evaluator(workflow_input: str, workflow_output: str, ground_truth: str) -> float:
+    def get_ngrams(tokens: List[str], n: int = 4) -> Counter:
+        return Counter([' '.join(tokens[i:i+n]) for i in range(len(tokens)-n+1)])
+    
+    candidate_tokens = preprocess_text(workflow_output)
+    reference_tokens = preprocess_text(ground_truth)
+    
+    # TF-IDF weight
+    doc_freq = Counter()
+    doc_freq.update(get_ngrams(reference_tokens))
+    
+    # n-gram
+    cand_vec = get_ngrams(candidate_tokens)
+    ref_vec = get_ngrams(reference_tokens)
+    
+    # cos
+    numerator = sum((cand_vec[gram] * ref_vec[gram]) / (doc_freq[gram] + 1) 
+                   for gram in set(cand_vec) & set(ref_vec))
+    
+    denom_cand = np.sqrt(sum((cand_vec[gram] / (doc_freq[gram] + 1))**2 
+                            for gram in cand_vec))
+    denom_ref = np.sqrt(sum((ref_vec[gram] / (doc_freq[gram] + 1))**2 
+                           for gram in ref_vec))
+    
+    if denom_cand * denom_ref == 0:
+        return 0.0
+    
+    score = numerator / (denom_cand * denom_ref)
+    return score * 10
+
+def combined_evaluator(workflow_input: str, workflow_output: str, ground_truth: str) -> float:
+
+    bleu = bleu_evaluator(workflow_input, workflow_output, ground_truth)
+    meteor = meteor_evaluator(workflow_input, workflow_output, ground_truth)
+    cider = cider_evaluator(workflow_input, workflow_output, ground_truth)
+    
+    # align weight
+    weights = {
+        'bleu': 0.3,
+        'meteor': 0.3,
+        'cider': 0.4
+    }
+    
+    final_score = (
+        bleu * weights['bleu'] + 
+        meteor * weights['meteor'] + 
+        cider * weights['cider']
+    )
+    
+    return final_score
 
 @cognify.register_evaluator
 def vlm_judge(workflow_input, workflow_output, ground_truth):
@@ -55,6 +158,18 @@ Provide a score between 0 and 10.
             "format_instructions": parser.get_format_instructions(),
         }
     )
+
+    # get other metric data
+    with open('evaluation_scores.txt', 'a') as file:
+        file.write(f"BLEU Score: {bleu_evaluator(workflow_input, workflow_output, ground_truth):.2f}/10\n")
+        file.write(f"METEOR Score: {meteor_evaluator(workflow_input, workflow_output, ground_truth):.2f}/10\n")
+        file.write(f"CIDEr Score: {cider_evaluator(workflow_input, workflow_output, ground_truth):.2f}/10\n")
+        file.write(f"Combined Score: {combined_evaluator(workflow_input, workflow_output, ground_truth):.2f}/10\n")
+        file.write("\n")  
+
+        if cider_evaluator(workflow_input, workflow_output, ground_truth) == 0:
+            file.write(f"output: {workflow_output}\n expected: {ground_truth}\n")
+
     return assess.score
 
 
@@ -118,59 +233,6 @@ def load_textcaps_data(path_to_data="./img", nr_samples=subset_size):
         processed_data[split_train:split_eval],
         processed_data[split_eval:]
     ]
-# def load_textcaps_data(path_to_data="TextCaps", nr_samples=5):
-#     ''' 
-#     Load TextCaps dataset and return [train_data, eval_data, test_data].
-    
-#     Expected format:
-#     - Input: {'query': 'caption', 'img_path': 'path_to_image'}
-#     - Label: {'ground_truth': 'caption'}
-#     '''
-#     TRAIN_SPLIT, EVAL_SPLIT, TEST_SPLIT = 0.6, 0.2, 0.2 #0.8, 0.1, 0.1
-#     assert TRAIN_SPLIT + EVAL_SPLIT + TEST_SPLIT == 1.0, 'Splits should sum to 1.0'
-    
-#     ANNOTATION_FILE_PATH = os.path.join(path_to_data, 'TextCaps_Annotations.json')
-#     IMAGE_FOLDER = os.path.join(path_to_data, 'images') 
-
-#     # Load annotations
-#     with open(ANNOTATION_FILE_PATH, 'r') as f:
-#         dataset = json.load(f)
-
-#     # Extract image IDs and captions
-#     all_entries = dataset["data"]
-#     if len(all_entries) > subset_size:
-#         all_entries = random.sample(all_entries, subset_size)  
-
-#     # Shuffle before taking the final sample
-#     random.shuffle(all_entries)  
-#     selected_entries = all_entries[:nr_samples]  
-
-#     subset_data = []
-#     for entry in selected_entries:
-#         input_sample = {
-#             'workflow_input': os.path.join(IMAGE_FOLDER, f"{entry['image_id']}.jpg")
-#         }
-#         ground_truth = {
-#             'ground_truth': entry["caption_str"]
-#         }
-#         subset_data.append((input_sample, ground_truth))
-
-
-#     print(f"Total selected samples: {len(subset_data)}")
-
-#     idx_train = int(len(subset_data) * TRAIN_SPLIT)
-#     idx_eval = int(len(subset_data) * (TRAIN_SPLIT + EVAL_SPLIT))
-    
-#     train_data, eval_data, test_data = (
-#         subset_data[:idx_train], 
-#         subset_data[idx_train:idx_eval], 
-#         subset_data[idx_eval:]
-#     )
-
-#     print(len(train_data), len(eval_data), len(test_data))
-
-#     return [train_data, eval_data, test_data]
-
 #================================================================
 # Optimizer Set Up
 #================================================================
