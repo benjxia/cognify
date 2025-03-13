@@ -92,7 +92,10 @@ class GenerateImageContext(OptionBase, metaclass=GenContextMeta):
     def generate_caption(self, model: str, images: List[ImageContent], model_kwargs: dict) -> str:
         CAPTION_PROMPT = "Generate a detailed caption about the image(s) provided. If there are multiple images, give a description in a numbered list.\n"
         msg_contents = [
-            TextContent(CAPTION_PROMPT)
+            {
+                "type": "text",
+                "text": CAPTION_PROMPT
+            }
         ] + images
 
         messages = [
@@ -108,7 +111,7 @@ class GenerateImageContext(OptionBase, metaclass=GenContextMeta):
     def generate_context(self, model: str, chat_messages: List[APICompatibleMessage], model_kwargs: dict) -> List[APICompatibleMessage]:
         raise NotImplementedError
 
-    def get_images(chat_messages: List[APICompatibleMessage]) -> List[ImageContent]:
+    def get_images(self, chat_messages: List[APICompatibleMessage]) -> List[ImageContent]:
         images = []
         for message in chat_messages:
             # Skip text-only messages
@@ -158,7 +161,7 @@ class DefaultImageContext(GenerateImageContext, metaclass=GenContextMeta):
         return cls()
 
 class VisionPlanningContext(GenerateImageContext, metaclass=GenContextMeta):
-    def __init__(self, prompt: Optional[str]):
+    def __init__(self, prompt: Optional[str] = None):
         super().__init__("VisionPlanningContext")
         self.prompt = prompt
 
@@ -186,7 +189,10 @@ class VisionPlanningContext(GenerateImageContext, metaclass=GenContextMeta):
         reasoning_messages.append(
             {
                 "role": "user",
-                "content": [TextContent(chat_caption_content)] + images
+                "content": [{
+                    "type": "text",
+                    "text": chat_caption_content
+                }] + images
             }
         )
         reasoning_messages.append(
