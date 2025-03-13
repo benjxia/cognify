@@ -43,9 +43,6 @@ __all__ = [
     "ZeroShotCoT",
     "PlanBefore",
     "TreeOfThought",
-<<<<<<< HEAD
-=======
     "VisionPlanning",
      "VLMImageQuality",
->>>>>>> image-caption-workflow
 ]
