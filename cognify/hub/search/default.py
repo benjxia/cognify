@@ -5,7 +5,8 @@ from cognify.optimizer.core import driver, flow
 from cognify.hub.cogs import reasoning, ensemble, model_selection
 from cognify.hub.cogs.common import NoChange
 from cognify.hub.cogs.fewshot import LMFewShot
-from cognify.hub.cogs.reasoning import ZeroShotCoT, PlanBefore
+from cognify.hub.cogs.reasoning import ZeroShotCoT, PlanBefore, VisionPlanning
+from cognify.hub.cogs.imagequality import VLMImageQuality, LowQuality, HighQuality
 from cognify.optimizer.control_param import ControlParameter, SelectedObjectives
 from dataclasses import dataclass
 
@@ -20,6 +21,38 @@ class SearchParams:
     opt_log_dir: str = "opt_results"
     model_selection_cog: model_selection.LMSelection = None
 
+def create_CogTest_search(search_params: SearchParams) -> ControlParameter:
+    # Reasoning Parameter
+    reasoning_param = reasoning.LMReasoning([NoChange(), VisionPlanning()])
+
+    # Few Shot Parameter
+    few_shot_params = LMFewShot(2)
+
+    # Image Quality
+    image_quality = VLMImageQuality([NoChange(), LowQuality(), HighQuality()])
+
+    # Layer Config
+    inner_opt_config = flow.OptConfig(
+        n_trials=search_params.n_trials,
+    )
+    params = [few_shot_params, reasoning_param, image_quality]
+    if search_params.model_selection_cog is not None:
+        params.append(search_params.model_selection_cog)
+    inner_loop_config = driver.LayerConfig(
+        layer_name="light_opt_layer",
+        universal_params=params,
+        opt_config=inner_opt_config,
+    )
+
+    # ================= Overall Control Parameter =================
+    optimize_control_param = ControlParameter(
+        opt_layer_configs=[inner_loop_config],
+        objectives=search_params.objectives,
+        opt_history_log_dir=search_params.opt_log_dir,
+        evaluator_batch_size=search_params.evaluator_batch_size,
+        quality_constraint=search_params.quality_constraint,
+    )
+    return optimize_control_param
 
 def create_light_search(search_params: SearchParams) -> ControlParameter:
     # Reasoning Parameter
@@ -210,10 +243,17 @@ def create_search(
                 model_selection_options,
             )
         assert isinstance(model_selection_cog, model_selection.LMSelection)
+<<<<<<< HEAD
     
     if n_trials is None:
         if search_type == "light":
             n_trials = 10
+=======
+
+    if n_trials is None:
+        if search_type == "light":
+            n_trials = 10 # for cog test
+>>>>>>> image-caption-workflow
         elif search_type == "medium":
             n_trials = 45
         elif search_type == "heavy":
@@ -235,7 +275,12 @@ def create_search(
     trace_default_search(search_type, quality_constraint, list(set(objectives)))
 
     if search_type == "light":
+<<<<<<< HEAD
         return create_light_search(search_params)
+=======
+        # return create_light_search(search_params)
+        return create_CogTest_search(search_params) # for cog test
+>>>>>>> image-caption-workflow
     elif search_type == "medium":
         return create_medium_search(search_params)
     elif search_type == "heavy":
