@@ -32,9 +32,9 @@ class ImageContent:
 
 
 def get_image_content_from_upload(
-    image_upload: str, file_type: Literal["jpeg", "png"]
+    image_upload: str, file_type: Literal["jpeg", "png"], detail: Literal["auto", "low", "high"] = "auto"
 ) -> ImageContent:
-    return ImageContent({"url": f"data:image/{file_type};base64,{image_upload}"})
+    return ImageContent({"url": f"data:image/{file_type};base64,{image_upload}", "detail": detail})
 
 
 Content = TextContent | ImageContent

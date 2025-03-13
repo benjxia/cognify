@@ -130,6 +130,7 @@ class Model(Module):
         self.steps: List[StepInfo] = []
         self.reasoning = None
         self.rationale = None
+        self.image_downsample: Literal["auto", "low", "high"] = "auto"
 
         # TODO: improve lm configuration handling between agents. currently just unique config for each agent
         self.lm_config = copy.deepcopy(lm_config)
@@ -422,10 +423,11 @@ class Model(Module):
         for input_var in self.input_variables:
             if input_var.image_type:
                 if input_var.image_type == "web":
+                    inputs[input_var.name]['detail'] = self.image_downsample
                     image_content = ImageContent(image_url=inputs[input_var.name])
                 else:
                     image_content = get_image_content_from_upload(
-                        inputs[input_var.name], input_var.image_type
+                        inputs[input_var.name], input_var.image_type, self.image_downsample
                     )
                 messages.append(CompletionMessage(role="user", content=[image_content]))
             else:
