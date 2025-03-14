@@ -45,21 +45,12 @@ parser = PydanticOutputParser(pydantic_object=Assessment)
 
 
 def preprocess_text(text: str) -> List[str]:
-    # Tokenize, lowercase, and lemmatize
-    tokens = word_tokenize(text.lower())  
-    return [lemmatizer.lemmatize(token) for token in tokens if token not in stop_words]
+    text = text.lower()
+    tokens = word_tokenize(text)
+    return tokens
 
-# Function for synonym matching using WordNet
-def get_synonyms(word: str) -> set:
-    synonyms = set()
-    for syn in wordnet.synsets(word):
-        for lemma in syn.lemmas():
-            synonyms.add(lemma.name().lower())
-    return synonyms
-
-# BLEU Evaluator with smoothing
 def bleu_evaluator(workflow_input: str, workflow_output: str, ground_truth: str) -> float:
-    smoothing = SmoothingFunction().method2 # improved smoothing
+    smoothing = SmoothingFunction().method1
     weights = (0.25, 0.25, 0.25, 0.25)
     
     reference_tokens = [preprocess_text(ground_truth)]
@@ -77,58 +68,60 @@ def bleu_evaluator(workflow_input: str, workflow_output: str, ground_truth: str)
         
     return score
 
-# METEOR Evaluator with synonym matching
 def meteor_evaluator(workflow_input: str, workflow_output: str, ground_truth: str) -> float:
     reference_tokens = preprocess_text(ground_truth)
     candidate_tokens = preprocess_text(workflow_output)
-
-    # Count the matches, considering synonyms
+    
+    # acc and recall
     matches = 0
     for c_token in candidate_tokens:
-        if c_token in reference_tokens or any(synonym in reference_tokens for synonym in get_synonyms(c_token)):
+        if c_token in reference_tokens:
             matches += 1
-
+            
     precision = matches / len(candidate_tokens) if candidate_tokens else 0
     recall = matches / len(reference_tokens) if reference_tokens else 0
-
-    # F1 Score
+    
+    # F1
     if precision + recall == 0:
         return 0.0
     meteor = 2 * (precision * recall) / (precision + recall)
-    
+
     return meteor * 10
 
-# CIDEr Evaluator with tokenization and synonym matching
 def cider_evaluator(workflow_input: str, workflow_output: str, ground_truth: str) -> float:
-    def get_ngrams(tokens: List[str], n: int = 4) -> Counter:
-        return Counter([' '.join(tokens[i:i+n]) for i in range(len(tokens)-n+1)])
-
+    def get_ngrams(tokens: list, n: int) -> Counter:
+        return Counter([' '.join(tokens[i:i+n]) for i in range(len(tokens)-n+1)] if len(tokens) >= n else Counter())
+    
     candidate_tokens = preprocess_text(workflow_output)
     reference_tokens = preprocess_text(ground_truth)
-
-    # TF-IDF Weight (simplified)
-    doc_freq = Counter()
-    doc_freq.update(get_ngrams(reference_tokens))
-
-    # n-gram vectors for candidate and reference
-    cand_vec = get_ngrams(candidate_tokens)
-    ref_vec = get_ngrams(reference_tokens)
-
-    # Cosine Similarity calculation with synonym matching
-    numerator = sum((cand_vec[gram] * ref_vec[gram]) / (doc_freq[gram] + 1) 
-                   for gram in set(cand_vec) & set(ref_vec))
-
-    denom_cand = np.sqrt(sum((cand_vec[gram] / (doc_freq[gram] + 1))**2 
-                            for gram in cand_vec))
-    denom_ref = np.sqrt(sum((ref_vec[gram] / (doc_freq[gram] + 1))**2 
-                           for gram in ref_vec))
-
-    if denom_cand * denom_ref == 0:
-        return 0.0
-
-    score = numerator / (denom_cand * denom_ref)
-    return score * 10
-
+    
+    total_score = 0.0
+    for n in range(1, 5):  # Use n=1 to 4 grams
+        # Get n-grams for candidate and reference
+        cand_ngrams = get_ngrams(candidate_tokens, n)
+        ref_ngrams = get_ngrams(reference_tokens, n)
+        
+        # Skip if no n-grams for this n
+        if not cand_ngrams and not ref_ngrams:
+            continue
+        
+        # Compute TF vectors (no IDF for simplicity)
+        common_ngrams = set(cand_ngrams) & set(ref_ngrams)
+        numerator = sum(cand_ngrams[gram] * ref_ngrams[gram] for gram in common_ngrams)
+        
+        denom_cand = np.sqrt(sum(c**2 for c in cand_ngrams.values()))
+        denom_ref = np.sqrt(sum(r**2 for r in ref_ngrams.values()))
+        
+        if denom_cand * denom_ref == 0:
+            score = 0.0
+        else:
+            score = numerator / (denom_cand * denom_ref)
+        
+        total_score += score
+    
+    # Average across n-grams (1-4)
+    avg_score = total_score / 4 if total_score != 0 else 0.0
+    return avg_score * 10  # Scale to 0-10
 
 @cognify.register_evaluator
 def vlm_judge(workflow_input, workflow_output, ground_truth):
@@ -156,13 +149,15 @@ Provide a score between 0 and 10.
     )
 
     # get other metric data
-    with open('evaluation_scores.txt', 'a') as file:
-        file.write(f"BLEU Score: {bleu_evaluator(workflow_input, workflow_output, ground_truth):.2f}/10\n")
-        file.write(f"METEOR Score: {meteor_evaluator(workflow_input, workflow_output, ground_truth):.2f}/10\n")
-        file.write(f"CIDEr Score: {cider_evaluator(workflow_input, workflow_output, ground_truth):.2f}/10\n")
-        file.write(f"output: {workflow_output}\n expected: {ground_truth}\n")
-
-        file.write("\n")  
+    # with open('results/evaluation_scores_img_compression_run5.txt', 'a') as file:
+    #     file.write(f"BLEU Score: {bleu_evaluator(workflow_input, workflow_output, ground_truth):.2f}/10\n")
+    #     file.write(f"METEOR Score: {meteor_evaluator(workflow_input, workflow_output, ground_truth):.2f}/10\n")
+    #     file.write(f"CIDEr Score: {cider_evaluator(workflow_input, workflow_output, ground_truth):.2f}/10\n")
+        
+    #     if cider_evaluator(workflow_input, workflow_output, ground_truth) == 0:
+    #         file.write(f"input: {workflow_input}\noutput: {workflow_output}\n expected: {ground_truth}\n")
+        
+    #     file.write("\n")  
 
 
     return assess.score
