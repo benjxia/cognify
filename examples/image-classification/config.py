@@ -25,6 +25,7 @@ from langchain.output_parsers import PydanticOutputParser
 
 # for other metric data
 import numpy as np
+import nltk
 from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
 from nltk.tokenize import word_tokenize
 from collections import Counter
@@ -84,55 +85,39 @@ def meteor_evaluator(workflow_input: str, workflow_output: str, ground_truth: st
     return meteor * 10
 
 def cider_evaluator(workflow_input: str, workflow_output: str, ground_truth: str) -> float:
-    def get_ngrams(tokens: List[str], n: int = 4) -> Counter:
-        return Counter([' '.join(tokens[i:i+n]) for i in range(len(tokens)-n+1)])
+    def get_ngrams(tokens: list, n: int) -> Counter:
+        return Counter([' '.join(tokens[i:i+n]) for i in range(len(tokens)-n+1)] if len(tokens) >= n else Counter())
     
     candidate_tokens = preprocess_text(workflow_output)
     reference_tokens = preprocess_text(ground_truth)
     
-    # TF-IDF weight
-    doc_freq = Counter()
-    doc_freq.update(get_ngrams(reference_tokens))
+    total_score = 0.0
+    for n in range(1, 5):  # Use n=1 to 4 grams
+        # Get n-grams for candidate and reference
+        cand_ngrams = get_ngrams(candidate_tokens, n)
+        ref_ngrams = get_ngrams(reference_tokens, n)
+        
+        # Skip if no n-grams for this n
+        if not cand_ngrams and not ref_ngrams:
+            continue
+        
+        # Compute TF vectors (no IDF for simplicity)
+        common_ngrams = set(cand_ngrams) & set(ref_ngrams)
+        numerator = sum(cand_ngrams[gram] * ref_ngrams[gram] for gram in common_ngrams)
+        
+        denom_cand = np.sqrt(sum(c**2 for c in cand_ngrams.values()))
+        denom_ref = np.sqrt(sum(r**2 for r in ref_ngrams.values()))
+        
+        if denom_cand * denom_ref == 0:
+            score = 0.0
+        else:
+            score = numerator / (denom_cand * denom_ref)
+        
+        total_score += score
     
-    # n-gram
-    cand_vec = get_ngrams(candidate_tokens)
-    ref_vec = get_ngrams(reference_tokens)
-    
-    # cos
-    numerator = sum((cand_vec[gram] * ref_vec[gram]) / (doc_freq[gram] + 1) 
-                   for gram in set(cand_vec) & set(ref_vec))
-    
-    denom_cand = np.sqrt(sum((cand_vec[gram] / (doc_freq[gram] + 1))**2 
-                            for gram in cand_vec))
-    denom_ref = np.sqrt(sum((ref_vec[gram] / (doc_freq[gram] + 1))**2 
-                           for gram in ref_vec))
-    
-    if denom_cand * denom_ref == 0:
-        return 0.0
-    
-    score = numerator / (denom_cand * denom_ref)
-    return score * 10
-
-def combined_evaluator(workflow_input: str, workflow_output: str, ground_truth: str) -> float:
-
-    bleu = bleu_evaluator(workflow_input, workflow_output, ground_truth)
-    meteor = meteor_evaluator(workflow_input, workflow_output, ground_truth)
-    cider = cider_evaluator(workflow_input, workflow_output, ground_truth)
-    
-    # align weight
-    weights = {
-        'bleu': 0.3,
-        'meteor': 0.3,
-        'cider': 0.4
-    }
-    
-    final_score = (
-        bleu * weights['bleu'] + 
-        meteor * weights['meteor'] + 
-        cider * weights['cider']
-    )
-    
-    return final_score
+    # Average across n-grams (1-4)
+    avg_score = total_score / 4 if total_score != 0 else 0.0
+    return avg_score * 10  # Scale to 0-10
 
 @cognify.register_evaluator
 def vlm_judge(workflow_input, workflow_output, ground_truth):
@@ -160,15 +145,15 @@ Provide a score between 0 and 10.
     )
 
     # get other metric data
-    with open('evaluation_scores.txt', 'a') as file:
+    with open('results/evaluation_scores_imgcompression_only_run5.txt', 'a') as file:
         file.write(f"BLEU Score: {bleu_evaluator(workflow_input, workflow_output, ground_truth):.2f}/10\n")
         file.write(f"METEOR Score: {meteor_evaluator(workflow_input, workflow_output, ground_truth):.2f}/10\n")
         file.write(f"CIDEr Score: {cider_evaluator(workflow_input, workflow_output, ground_truth):.2f}/10\n")
-        file.write(f"Combined Score: {combined_evaluator(workflow_input, workflow_output, ground_truth):.2f}/10\n")
-        file.write("\n")  
 
         if cider_evaluator(workflow_input, workflow_output, ground_truth) == 0:
-            file.write(f"output: {workflow_output}\n expected: {ground_truth}\n")
+            file.write(f"input: {workflow_input}\noutput: {workflow_output}\n expected: {ground_truth}\n")
+        
+        file.write("\n")  
 
     return assess.score
 
