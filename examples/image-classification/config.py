@@ -145,15 +145,15 @@ Provide a score between 0 and 10.
     )
 
     # get other metric data
-    with open('results/evaluation_scores_imgcompression_only_run5.txt', 'a') as file:
-        file.write(f"BLEU Score: {bleu_evaluator(workflow_input, workflow_output, ground_truth):.2f}/10\n")
-        file.write(f"METEOR Score: {meteor_evaluator(workflow_input, workflow_output, ground_truth):.2f}/10\n")
-        file.write(f"CIDEr Score: {cider_evaluator(workflow_input, workflow_output, ground_truth):.2f}/10\n")
+    # with open('results/evaluation_scores_imgcompression_only_run5.txt', 'a') as file:
+    #     file.write(f"BLEU Score: {bleu_evaluator(workflow_input, workflow_output, ground_truth):.2f}/10\n")
+    #     file.write(f"METEOR Score: {meteor_evaluator(workflow_input, workflow_output, ground_truth):.2f}/10\n")
+    #     file.write(f"CIDEr Score: {cider_evaluator(workflow_input, workflow_output, ground_truth):.2f}/10\n")
 
-        if cider_evaluator(workflow_input, workflow_output, ground_truth) == 0:
-            file.write(f"input: {workflow_input}\noutput: {workflow_output}\n expected: {ground_truth}\n")
+    #     if cider_evaluator(workflow_input, workflow_output, ground_truth) == 0:
+    #         file.write(f"input: {workflow_input}\noutput: {workflow_output}\n expected: {ground_truth}\n")
         
-        file.write("\n")  
+    #     file.write("\n")  
 
     return assess.score
 
