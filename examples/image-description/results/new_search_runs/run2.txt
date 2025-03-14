@@ -1,0 +1,6 @@
+Original result before optimization | quality: 6.77, cost@1000: $1.91, avg latency: 3.63s                                                                                                      
+Optimization progress | best quality: --, lowest cost@1000: --, lowest avg latency: -- | Total Optimization Cost: $0.35:   5%|█▊                                      | 0.46/10.0 [00:59<20:41][ERROR 2025-03-14 02:21:27] Workflow execution threw error for task 2: litellm.RateLimitError: RateLimitError: OpenAIException - Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o-mini in organization org-JhM8hhKJlLwh49ljBZeVaFeA on tokens per min (TPM): Limit 2000000, Used 1999383, Requested 852. Please try again in 7ms. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}. Automatic score of 0
+Optimization progress | best quality: --, lowest cost@1000: --, lowest avg latency: -- | Total Optimization Cost: $0.41:   5%|██                                      | 0.52/10.0 [01:04<09:00]================ Optimization Results =================
+Optimized for: quality, cost, latency
+Based on current optimization parameters, the best solution is the original workflow.
+We recommend increasing the number of trials or relaxing constraints.

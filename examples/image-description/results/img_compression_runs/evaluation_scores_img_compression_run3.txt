@@ -1,0 +1,1120 @@
+BLEU Score: 0.36/10
+METEOR Score: 3.90/10
+CIDEr Score: 1.65/10
+
+BLEU Score: 0.06/10
+METEOR Score: 4.40/10
+CIDEr Score: 1.24/10
+
+BLEU Score: 0.77/10
+METEOR Score: 5.74/10
+CIDEr Score: 1.79/10
+
+BLEU Score: 0.13/10
+METEOR Score: 4.40/10
+CIDEr Score: 0.95/10
+
+BLEU Score: 0.09/10
+METEOR Score: 3.18/10
+CIDEr Score: 0.62/10
+
+BLEU Score: 0.11/10
+METEOR Score: 6.17/10
+CIDEr Score: 1.65/10
+
+BLEU Score: 0.34/10
+METEOR Score: 5.60/10
+CIDEr Score: 2.04/10
+
+BLEU Score: 0.09/10
+METEOR Score: 3.75/10
+CIDEr Score: 1.09/10
+
+BLEU Score: 0.16/10
+METEOR Score: 4.32/10
+CIDEr Score: 1.23/10
+
+BLEU Score: 0.41/10
+METEOR Score: 5.11/10
+CIDEr Score: 1.83/10
+
+BLEU Score: 0.09/10
+METEOR Score: 2.94/10
+CIDEr Score: 0.79/10
+
+BLEU Score: 0.28/10
+METEOR Score: 4.11/10
+CIDEr Score: 1.00/10
+
+BLEU Score: 0.28/10
+METEOR Score: 5.24/10
+CIDEr Score: 1.86/10
+
+BLEU Score: 0.15/10
+METEOR Score: 4.47/10
+CIDEr Score: 1.49/10
+
+BLEU Score: 0.08/10
+METEOR Score: 3.61/10
+CIDEr Score: 0.81/10
+
+BLEU Score: 0.14/10
+METEOR Score: 2.68/10
+CIDEr Score: 1.03/10
+
+BLEU Score: 0.06/10
+METEOR Score: 3.79/10
+CIDEr Score: 0.83/10
+
+BLEU Score: 0.07/10
+METEOR Score: 4.11/10
+CIDEr Score: 0.91/10
+
+BLEU Score: 0.22/10
+METEOR Score: 4.77/10
+CIDEr Score: 1.74/10
+
+BLEU Score: 0.10/10
+METEOR Score: 4.04/10
+CIDEr Score: 0.76/10
+
+BLEU Score: 0.11/10
+METEOR Score: 3.57/10
+CIDEr Score: 0.94/10
+
+BLEU Score: 0.16/10
+METEOR Score: 2.82/10
+CIDEr Score: 1.18/10
+
+BLEU Score: 0.24/10
+METEOR Score: 4.84/10
+CIDEr Score: 1.27/10
+
+BLEU Score: 0.15/10
+METEOR Score: 4.07/10
+CIDEr Score: 1.11/10
+
+BLEU Score: 0.07/10
+METEOR Score: 4.26/10
+CIDEr Score: 1.09/10
+
+BLEU Score: 0.15/10
+METEOR Score: 3.81/10
+CIDEr Score: 0.97/10
+
+BLEU Score: 0.12/10
+METEOR Score: 2.33/10
+CIDEr Score: 0.59/10
+
+BLEU Score: 0.09/10
+METEOR Score: 4.49/10
+CIDEr Score: 1.08/10
+
+BLEU Score: 0.06/10
+METEOR Score: 3.37/10
+CIDEr Score: 0.70/10
+
+BLEU Score: 0.78/10
+METEOR Score: 4.70/10
+CIDEr Score: 1.64/10
+
+BLEU Score: 0.11/10
+METEOR Score: 4.66/10
+CIDEr Score: 1.46/10
+
+BLEU Score: 0.19/10
+METEOR Score: 2.76/10
+CIDEr Score: 0.65/10
+
+BLEU Score: 0.61/10
+METEOR Score: 5.81/10
+CIDEr Score: 1.53/10
+
+BLEU Score: 0.17/10
+METEOR Score: 3.71/10
+CIDEr Score: 1.28/10
+
+BLEU Score: 0.06/10
+METEOR Score: 3.67/10
+CIDEr Score: 0.83/10
+
+BLEU Score: 0.06/10
+METEOR Score: 4.19/10
+CIDEr Score: 1.08/10
+
+BLEU Score: 0.14/10
+METEOR Score: 4.39/10
+CIDEr Score: 1.34/10
+
+BLEU Score: 0.05/10
+METEOR Score: 5.38/10
+CIDEr Score: 1.09/10
+
+BLEU Score: 0.05/10
+METEOR Score: 4.90/10
+CIDEr Score: 0.92/10
+
+BLEU Score: 0.10/10
+METEOR Score: 4.13/10
+CIDEr Score: 1.15/10
+
+BLEU Score: 0.27/10
+METEOR Score: 4.20/10
+CIDEr Score: 1.64/10
+
+BLEU Score: 0.38/10
+METEOR Score: 5.51/10
+CIDEr Score: 1.86/10
+
+BLEU Score: 0.09/10
+METEOR Score: 3.53/10
+CIDEr Score: 1.27/10
+
+BLEU Score: 0.37/10
+METEOR Score: 4.18/10
+CIDEr Score: 1.99/10
+
+BLEU Score: 0.20/10
+METEOR Score: 3.57/10
+CIDEr Score: 1.48/10
+
+BLEU Score: 0.09/10
+METEOR Score: 2.67/10
+CIDEr Score: 0.53/10
+
+BLEU Score: 0.08/10
+METEOR Score: 4.42/10
+CIDEr Score: 1.13/10
+
+BLEU Score: 0.25/10
+METEOR Score: 3.66/10
+CIDEr Score: 1.47/10
+
+BLEU Score: 0.14/10
+METEOR Score: 3.22/10
+CIDEr Score: 0.85/10
+
+BLEU Score: 0.17/10
+METEOR Score: 4.00/10
+CIDEr Score: 1.09/10
+
+BLEU Score: 0.40/10
+METEOR Score: 4.00/10
+CIDEr Score: 1.32/10
+
+BLEU Score: 0.12/10
+METEOR Score: 2.30/10
+CIDEr Score: 0.86/10
+
+BLEU Score: 0.09/10
+METEOR Score: 1.82/10
+CIDEr Score: 0.64/10
+
+BLEU Score: 0.14/10
+METEOR Score: 2.58/10
+CIDEr Score: 0.62/10
+
+BLEU Score: 0.32/10
+METEOR Score: 3.65/10
+CIDEr Score: 1.24/10
+
+BLEU Score: 0.20/10
+METEOR Score: 4.19/10
+CIDEr Score: 1.26/10
+
+BLEU Score: 0.08/10
+METEOR Score: 5.53/10
+CIDEr Score: 1.32/10
+
+BLEU Score: 0.11/10
+METEOR Score: 3.44/10
+CIDEr Score: 1.12/10
+
+BLEU Score: 0.07/10
+METEOR Score: 1.98/10
+CIDEr Score: 0.55/10
+
+BLEU Score: 0.13/10
+METEOR Score: 3.21/10
+CIDEr Score: 1.04/10
+
+BLEU Score: 0.36/10
+METEOR Score: 4.00/10
+CIDEr Score: 2.14/10
+
+BLEU Score: 0.07/10
+METEOR Score: 3.05/10
+CIDEr Score: 0.59/10
+
+BLEU Score: 0.27/10
+METEOR Score: 4.00/10
+CIDEr Score: 1.27/10
+
+BLEU Score: 0.07/10
+METEOR Score: 3.70/10
+CIDEr Score: 0.72/10
+
+BLEU Score: 0.42/10
+METEOR Score: 4.67/10
+CIDEr Score: 1.52/10
+
+BLEU Score: 0.07/10
+METEOR Score: 3.86/10
+CIDEr Score: 0.87/10
+
+BLEU Score: 0.15/10
+METEOR Score: 2.95/10
+CIDEr Score: 0.66/10
+
+BLEU Score: 0.80/10
+METEOR Score: 5.95/10
+CIDEr Score: 2.09/10
+
+BLEU Score: 0.09/10
+METEOR Score: 3.12/10
+CIDEr Score: 0.88/10
+
+BLEU Score: 0.05/10
+METEOR Score: 2.71/10
+CIDEr Score: 0.69/10
+
+BLEU Score: 0.26/10
+METEOR Score: 3.68/10
+CIDEr Score: 0.97/10
+
+BLEU Score: 0.04/10
+METEOR Score: 2.30/10
+CIDEr Score: 0.59/10
+
+BLEU Score: 0.26/10
+METEOR Score: 5.13/10
+CIDEr Score: 1.77/10
+
+BLEU Score: 0.06/10
+METEOR Score: 4.82/10
+CIDEr Score: 1.00/10
+
+BLEU Score: 0.16/10
+METEOR Score: 4.71/10
+CIDEr Score: 1.35/10
+
+BLEU Score: 0.12/10
+METEOR Score: 2.71/10
+CIDEr Score: 0.64/10
+
+BLEU Score: 0.08/10
+METEOR Score: 2.63/10
+CIDEr Score: 0.51/10
+
+BLEU Score: 0.07/10
+METEOR Score: 2.83/10
+CIDEr Score: 0.73/10
+
+BLEU Score: 0.22/10
+METEOR Score: 5.60/10
+CIDEr Score: 1.33/10
+
+BLEU Score: 0.79/10
+METEOR Score: 4.96/10
+CIDEr Score: 2.11/10
+
+BLEU Score: 0.13/10
+METEOR Score: 2.15/10
+CIDEr Score: 0.83/10
+
+BLEU Score: 0.13/10
+METEOR Score: 2.99/10
+CIDEr Score: 0.88/10
+
+BLEU Score: 0.27/10
+METEOR Score: 4.00/10
+CIDEr Score: 1.30/10
+
+BLEU Score: 0.29/10
+METEOR Score: 3.81/10
+CIDEr Score: 1.55/10
+
+BLEU Score: 0.10/10
+METEOR Score: 1.73/10
+CIDEr Score: 0.50/10
+
+BLEU Score: 0.06/10
+METEOR Score: 2.81/10
+CIDEr Score: 0.63/10
+
+BLEU Score: 0.70/10
+METEOR Score: 4.59/10
+CIDEr Score: 1.71/10
+
+BLEU Score: 0.09/10
+METEOR Score: 4.47/10
+CIDEr Score: 0.89/10
+
+BLEU Score: 0.09/10
+METEOR Score: 2.33/10
+CIDEr Score: 0.44/10
+
+BLEU Score: 0.04/10
+METEOR Score: 3.79/10
+CIDEr Score: 0.51/10
+
+BLEU Score: 0.59/10
+METEOR Score: 5.92/10
+CIDEr Score: 1.81/10
+
+BLEU Score: 0.07/10
+METEOR Score: 4.00/10
+CIDEr Score: 0.89/10
+
+BLEU Score: 0.09/10
+METEOR Score: 4.41/10
+CIDEr Score: 1.14/10
+
+BLEU Score: 0.04/10
+METEOR Score: 3.42/10
+CIDEr Score: 1.10/10
+
+BLEU Score: 0.10/10
+METEOR Score: 3.91/10
+CIDEr Score: 1.42/10
+
+BLEU Score: 0.09/10
+METEOR Score: 4.57/10
+CIDEr Score: 1.42/10
+
+BLEU Score: 0.06/10
+METEOR Score: 3.84/10
+CIDEr Score: 1.13/10
+
+BLEU Score: 0.13/10
+METEOR Score: 3.61/10
+CIDEr Score: 1.44/10
+
+BLEU Score: 0.05/10
+METEOR Score: 2.57/10
+CIDEr Score: 0.45/10
+
+BLEU Score: 0.08/10
+METEOR Score: 3.39/10
+CIDEr Score: 0.72/10
+
+BLEU Score: 0.11/10
+METEOR Score: 5.25/10
+CIDEr Score: 1.50/10
+
+BLEU Score: 0.17/10
+METEOR Score: 3.83/10
+CIDEr Score: 1.15/10
+
+BLEU Score: 0.08/10
+METEOR Score: 3.29/10
+CIDEr Score: 0.83/10
+
+BLEU Score: 0.08/10
+METEOR Score: 3.76/10
+CIDEr Score: 1.08/10
+
+BLEU Score: 0.18/10
+METEOR Score: 4.13/10
+CIDEr Score: 0.93/10
+
+BLEU Score: 0.08/10
+METEOR Score: 1.40/10
+CIDEr Score: 0.41/10
+
+BLEU Score: 0.31/10
+METEOR Score: 4.56/10
+CIDEr Score: 1.68/10
+
+BLEU Score: 0.21/10
+METEOR Score: 5.29/10
+CIDEr Score: 1.31/10
+
+BLEU Score: 0.72/10
+METEOR Score: 5.00/10
+CIDEr Score: 1.57/10
+
+BLEU Score: 0.12/10
+METEOR Score: 3.78/10
+CIDEr Score: 1.11/10
+
+BLEU Score: 0.05/10
+METEOR Score: 2.78/10
+CIDEr Score: 0.52/10
+
+BLEU Score: 0.10/10
+METEOR Score: 2.64/10
+CIDEr Score: 0.68/10
+
+BLEU Score: 0.45/10
+METEOR Score: 3.89/10
+CIDEr Score: 1.45/10
+
+BLEU Score: 0.38/10
+METEOR Score: 3.70/10
+CIDEr Score: 1.13/10
+
+BLEU Score: 0.11/10
+METEOR Score: 3.39/10
+CIDEr Score: 1.20/10
+
+BLEU Score: 0.52/10
+METEOR Score: 4.78/10
+CIDEr Score: 1.91/10
+
+BLEU Score: 0.21/10
+METEOR Score: 3.02/10
+CIDEr Score: 1.19/10
+
+BLEU Score: 0.14/10
+METEOR Score: 2.42/10
+CIDEr Score: 0.58/10
+
+BLEU Score: 0.04/10
+METEOR Score: 2.58/10
+CIDEr Score: 0.61/10
+
+BLEU Score: 0.13/10
+METEOR Score: 3.59/10
+CIDEr Score: 1.43/10
+
+BLEU Score: 0.11/10
+METEOR Score: 4.09/10
+CIDEr Score: 0.90/10
+
+BLEU Score: 0.06/10
+METEOR Score: 4.60/10
+CIDEr Score: 0.84/10
+
+BLEU Score: 0.16/10
+METEOR Score: 3.88/10
+CIDEr Score: 1.14/10
+
+BLEU Score: 0.25/10
+METEOR Score: 4.62/10
+CIDEr Score: 1.64/10
+
+BLEU Score: 0.36/10
+METEOR Score: 5.18/10
+CIDEr Score: 1.60/10
+
+BLEU Score: 0.03/10
+METEOR Score: 3.08/10
+CIDEr Score: 0.74/10
+
+BLEU Score: 0.18/10
+METEOR Score: 3.23/10
+CIDEr Score: 0.97/10
+
+BLEU Score: 0.05/10
+METEOR Score: 4.42/10
+CIDEr Score: 0.94/10
+
+BLEU Score: 0.62/10
+METEOR Score: 6.74/10
+CIDEr Score: 2.31/10
+
+BLEU Score: 0.51/10
+METEOR Score: 4.60/10
+CIDEr Score: 1.73/10
+
+BLEU Score: 0.22/10
+METEOR Score: 4.55/10
+CIDEr Score: 1.82/10
+
+BLEU Score: 0.10/10
+METEOR Score: 4.20/10
+CIDEr Score: 0.88/10
+
+BLEU Score: 0.06/10
+METEOR Score: 4.36/10
+CIDEr Score: 1.21/10
+
+BLEU Score: 0.11/10
+METEOR Score: 5.18/10
+CIDEr Score: 1.14/10
+
+BLEU Score: 0.09/10
+METEOR Score: 4.74/10
+CIDEr Score: 1.16/10
+
+BLEU Score: 0.54/10
+METEOR Score: 3.94/10
+CIDEr Score: 1.62/10
+
+BLEU Score: 0.08/10
+METEOR Score: 5.56/10
+CIDEr Score: 1.35/10
+
+BLEU Score: 0.23/10
+METEOR Score: 5.00/10
+CIDEr Score: 1.72/10
+
+BLEU Score: 0.04/10
+METEOR Score: 4.14/10
+CIDEr Score: 0.95/10
+
+BLEU Score: 0.15/10
+METEOR Score: 4.77/10
+CIDEr Score: 1.13/10
+
+BLEU Score: 0.28/10
+METEOR Score: 4.72/10
+CIDEr Score: 1.58/10
+
+BLEU Score: 0.04/10
+METEOR Score: 1.54/10
+CIDEr Score: 0.38/10
+
+BLEU Score: 0.04/10
+METEOR Score: 1.55/10
+CIDEr Score: 0.43/10
+
+BLEU Score: 0.05/10
+METEOR Score: 4.11/10
+CIDEr Score: 1.19/10
+
+BLEU Score: 0.04/10
+METEOR Score: 3.29/10
+CIDEr Score: 0.71/10
+
+BLEU Score: 0.08/10
+METEOR Score: 2.80/10
+CIDEr Score: 0.69/10
+
+BLEU Score: 0.09/10
+METEOR Score: 3.92/10
+CIDEr Score: 1.12/10
+
+BLEU Score: 0.16/10
+METEOR Score: 5.68/10
+CIDEr Score: 1.67/10
+
+BLEU Score: 0.13/10
+METEOR Score: 4.77/10
+CIDEr Score: 1.45/10
+
+BLEU Score: 0.20/10
+METEOR Score: 5.43/10
+CIDEr Score: 1.72/10
+
+BLEU Score: 0.09/10
+METEOR Score: 3.22/10
+CIDEr Score: 1.02/10
+
+BLEU Score: 0.24/10
+METEOR Score: 5.52/10
+CIDEr Score: 1.45/10
+
+BLEU Score: 0.12/10
+METEOR Score: 3.68/10
+CIDEr Score: 1.58/10
+
+BLEU Score: 0.55/10
+METEOR Score: 4.94/10
+CIDEr Score: 1.94/10
+
+BLEU Score: 0.12/10
+METEOR Score: 2.95/10
+CIDEr Score: 1.15/10
+
+BLEU Score: 0.04/10
+METEOR Score: 2.70/10
+CIDEr Score: 0.62/10
+
+BLEU Score: 0.10/10
+METEOR Score: 3.73/10
+CIDEr Score: 0.85/10
+
+BLEU Score: 0.08/10
+METEOR Score: 3.93/10
+CIDEr Score: 0.61/10
+
+BLEU Score: 0.19/10
+METEOR Score: 5.27/10
+CIDEr Score: 1.87/10
+
+BLEU Score: 0.34/10
+METEOR Score: 4.00/10
+CIDEr Score: 1.58/10
+
+BLEU Score: 0.11/10
+METEOR Score: 3.30/10
+CIDEr Score: 1.09/10
+
+BLEU Score: 0.17/10
+METEOR Score: 4.00/10
+CIDEr Score: 1.09/10
+
+BLEU Score: 0.10/10
+METEOR Score: 3.30/10
+CIDEr Score: 0.86/10
+
+BLEU Score: 0.13/10
+METEOR Score: 3.05/10
+CIDEr Score: 0.97/10
+
+BLEU Score: 0.43/10
+METEOR Score: 4.72/10
+CIDEr Score: 1.45/10
+
+BLEU Score: 0.27/10
+METEOR Score: 3.19/10
+CIDEr Score: 1.46/10
+
+BLEU Score: 0.09/10
+METEOR Score: 3.54/10
+CIDEr Score: 0.86/10
+
+BLEU Score: 0.09/10
+METEOR Score: 3.12/10
+CIDEr Score: 0.88/10
+
+BLEU Score: 0.05/10
+METEOR Score: 4.64/10
+CIDEr Score: 1.55/10
+
+BLEU Score: 0.07/10
+METEOR Score: 3.86/10
+CIDEr Score: 0.73/10
+
+BLEU Score: 0.04/10
+METEOR Score: 4.12/10
+CIDEr Score: 0.92/10
+
+BLEU Score: 0.18/10
+METEOR Score: 3.70/10
+CIDEr Score: 1.13/10
+
+BLEU Score: 0.03/10
+METEOR Score: 1.30/10
+CIDEr Score: 0.34/10
+
+BLEU Score: 0.05/10
+METEOR Score: 3.33/10
+CIDEr Score: 0.66/10
+
+BLEU Score: 0.16/10
+METEOR Score: 4.76/10
+CIDEr Score: 1.23/10
+
+BLEU Score: 0.07/10
+METEOR Score: 3.94/10
+CIDEr Score: 1.08/10
+
+BLEU Score: 0.16/10
+METEOR Score: 5.00/10
+CIDEr Score: 1.48/10
+
+BLEU Score: 0.12/10
+METEOR Score: 4.04/10
+CIDEr Score: 1.06/10
+
+BLEU Score: 0.04/10
+METEOR Score: 5.05/10
+CIDEr Score: 0.98/10
+
+BLEU Score: 0.13/10
+METEOR Score: 2.15/10
+CIDEr Score: 0.82/10
+
+BLEU Score: 0.13/10
+METEOR Score: 2.83/10
+CIDEr Score: 1.02/10
+
+BLEU Score: 0.10/10
+METEOR Score: 1.84/10
+CIDEr Score: 0.37/10
+
+BLEU Score: 0.10/10
+METEOR Score: 2.96/10
+CIDEr Score: 0.72/10
+
+BLEU Score: 0.07/10
+METEOR Score: 3.27/10
+CIDEr Score: 0.68/10
+
+BLEU Score: 0.07/10
+METEOR Score: 2.80/10
+CIDEr Score: 0.73/10
+
+BLEU Score: 0.04/10
+METEOR Score: 3.46/10
+CIDEr Score: 0.53/10
+
+BLEU Score: 0.29/10
+METEOR Score: 3.81/10
+CIDEr Score: 1.55/10
+
+BLEU Score: 0.46/10
+METEOR Score: 4.08/10
+CIDEr Score: 1.32/10
+
+BLEU Score: 0.12/10
+METEOR Score: 4.83/10
+CIDEr Score: 1.57/10
+
+BLEU Score: 0.09/10
+METEOR Score: 4.68/10
+CIDEr Score: 0.97/10
+
+BLEU Score: 0.10/10
+METEOR Score: 3.91/10
+CIDEr Score: 1.45/10
+
+BLEU Score: 0.07/10
+METEOR Score: 3.94/10
+CIDEr Score: 0.88/10
+
+BLEU Score: 0.06/10
+METEOR Score: 4.60/10
+CIDEr Score: 0.82/10
+
+BLEU Score: 0.08/10
+METEOR Score: 2.84/10
+CIDEr Score: 0.59/10
+
+BLEU Score: 0.21/10
+METEOR Score: 3.02/10
+CIDEr Score: 1.19/10
+
+BLEU Score: 0.30/10
+METEOR Score: 3.87/10
+CIDEr Score: 1.16/10
+
+BLEU Score: 0.15/10
+METEOR Score: 1.94/10
+CIDEr Score: 0.46/10
+
+BLEU Score: 0.17/10
+METEOR Score: 4.05/10
+CIDEr Score: 1.18/10
+
+BLEU Score: 0.16/10
+METEOR Score: 6.12/10
+CIDEr Score: 1.64/10
+
+BLEU Score: 0.08/10
+METEOR Score: 3.48/10
+CIDEr Score: 1.44/10
+
+BLEU Score: 0.09/10
+METEOR Score: 1.50/10
+CIDEr Score: 0.49/10
+
+BLEU Score: 0.25/10
+METEOR Score: 4.62/10
+CIDEr Score: 1.64/10
+
+BLEU Score: 0.12/10
+METEOR Score: 4.00/10
+CIDEr Score: 0.83/10
+
+BLEU Score: 0.16/10
+METEOR Score: 4.56/10
+CIDEr Score: 1.12/10
+
+BLEU Score: 0.19/10
+METEOR Score: 3.67/10
+CIDEr Score: 1.03/10
+
+BLEU Score: 0.19/10
+METEOR Score: 5.45/10
+CIDEr Score: 1.24/10
+
+BLEU Score: 0.04/10
+METEOR Score: 2.91/10
+CIDEr Score: 0.40/10
+
+BLEU Score: 0.15/10
+METEOR Score: 4.29/10
+CIDEr Score: 1.19/10
+
+BLEU Score: 0.23/10
+METEOR Score: 3.48/10
+CIDEr Score: 0.95/10
+
+BLEU Score: 0.70/10
+METEOR Score: 4.29/10
+CIDEr Score: 1.75/10
+
+BLEU Score: 0.08/10
+METEOR Score: 2.86/10
+CIDEr Score: 0.99/10
+
+BLEU Score: 0.31/10
+METEOR Score: 3.96/10
+CIDEr Score: 1.20/10
+
+BLEU Score: 0.29/10
+METEOR Score: 3.62/10
+CIDEr Score: 1.64/10
+
+BLEU Score: 0.31/10
+METEOR Score: 5.95/10
+CIDEr Score: 1.93/10
+
+BLEU Score: 0.16/10
+METEOR Score: 3.33/10
+CIDEr Score: 1.60/10
+
+BLEU Score: 0.09/10
+METEOR Score: 4.12/10
+CIDEr Score: 1.25/10
+
+BLEU Score: 0.25/10
+METEOR Score: 4.64/10
+CIDEr Score: 1.44/10
+
+BLEU Score: 0.43/10
+METEOR Score: 5.06/10
+CIDEr Score: 1.65/10
+
+BLEU Score: 0.06/10
+METEOR Score: 2.41/10
+CIDEr Score: 0.88/10
+
+BLEU Score: 0.08/10
+METEOR Score: 2.56/10
+CIDEr Score: 0.80/10
+
+BLEU Score: 0.24/10
+METEOR Score: 3.30/10
+CIDEr Score: 1.21/10
+
+BLEU Score: 0.08/10
+METEOR Score: 3.61/10
+CIDEr Score: 0.79/10
+
+BLEU Score: 0.05/10
+METEOR Score: 2.57/10
+CIDEr Score: 0.50/10
+
+BLEU Score: 0.27/10
+METEOR Score: 4.20/10
+CIDEr Score: 1.64/10
+
+BLEU Score: 0.10/10
+METEOR Score: 3.12/10
+CIDEr Score: 0.85/10
+
+BLEU Score: 0.28/10
+METEOR Score: 4.84/10
+CIDEr Score: 1.73/10
+
+BLEU Score: 0.14/10
+METEOR Score: 3.57/10
+CIDEr Score: 0.79/10
+
+BLEU Score: 0.05/10
+METEOR Score: 4.63/10
+CIDEr Score: 0.85/10
+
+BLEU Score: 0.19/10
+METEOR Score: 4.74/10
+CIDEr Score: 1.28/10
+
+BLEU Score: 0.13/10
+METEOR Score: 2.25/10
+CIDEr Score: 0.85/10
+
+BLEU Score: 0.11/10
+METEOR Score: 2.08/10
+CIDEr Score: 0.38/10
+
+BLEU Score: 0.21/10
+METEOR Score: 4.69/10
+CIDEr Score: 1.46/10
+
+BLEU Score: 0.08/10
+METEOR Score: 3.26/10
+CIDEr Score: 0.97/10
+
+BLEU Score: 0.30/10
+METEOR Score: 3.48/10
+CIDEr Score: 1.92/10
+
+BLEU Score: 0.12/10
+METEOR Score: 3.53/10
+CIDEr Score: 0.72/10
+
+BLEU Score: 0.13/10
+METEOR Score: 4.00/10
+CIDEr Score: 0.80/10
+
+BLEU Score: 0.09/10
+METEOR Score: 1.82/10
+CIDEr Score: 0.64/10
+
+BLEU Score: 0.80/10
+METEOR Score: 5.95/10
+CIDEr Score: 2.09/10
+
+BLEU Score: 0.60/10
+METEOR Score: 3.18/10
+CIDEr Score: 1.44/10
+
+BLEU Score: 0.11/10
+METEOR Score: 3.16/10
+CIDEr Score: 1.01/10
+
+BLEU Score: 0.05/10
+METEOR Score: 2.41/10
+CIDEr Score: 0.61/10
+
+BLEU Score: 0.06/10
+METEOR Score: 2.31/10
+CIDEr Score: 0.35/10
+
+BLEU Score: 0.16/10
+METEOR Score: 4.71/10
+CIDEr Score: 1.35/10
+
+BLEU Score: 0.13/10
+METEOR Score: 2.17/10
+CIDEr Score: 0.83/10
+
+BLEU Score: 0.25/10
+METEOR Score: 4.90/10
+CIDEr Score: 1.84/10
+
+BLEU Score: 0.26/10
+METEOR Score: 3.59/10
+CIDEr Score: 0.95/10
+
+BLEU Score: 0.06/10
+METEOR Score: 4.88/10
+CIDEr Score: 1.01/10
+
+BLEU Score: 0.05/10
+METEOR Score: 3.23/10
+CIDEr Score: 0.72/10
+
+BLEU Score: 0.26/10
+METEOR Score: 5.17/10
+CIDEr Score: 1.32/10
+
+BLEU Score: 0.04/10
+METEOR Score: 2.26/10
+CIDEr Score: 0.57/10
+
+BLEU Score: 0.08/10
+METEOR Score: 2.03/10
+CIDEr Score: 0.40/10
+
+BLEU Score: 0.09/10
+METEOR Score: 2.67/10
+CIDEr Score: 0.53/10
+
+BLEU Score: 0.06/10
+METEOR Score: 3.55/10
+CIDEr Score: 0.80/10
+
+BLEU Score: 0.10/10
+METEOR Score: 1.63/10
+CIDEr Score: 0.72/10
+
+BLEU Score: 0.05/10
+METEOR Score: 4.50/10
+CIDEr Score: 0.82/10
+
+BLEU Score: 0.11/10
+METEOR Score: 2.50/10
+CIDEr Score: 0.61/10
+
+BLEU Score: 0.55/10
+METEOR Score: 4.19/10
+CIDEr Score: 1.52/10
+
+BLEU Score: 0.27/10
+METEOR Score: 4.00/10
+CIDEr Score: 1.30/10
+
+BLEU Score: 0.04/10
+METEOR Score: 4.92/10
+CIDEr Score: 0.87/10
+
+BLEU Score: 0.11/10
+METEOR Score: 4.00/10
+CIDEr Score: 1.29/10
+
+BLEU Score: 0.10/10
+METEOR Score: 3.40/10
+CIDEr Score: 1.55/10
+
+BLEU Score: 0.07/10
+METEOR Score: 3.07/10
+CIDEr Score: 0.75/10
+
+BLEU Score: 0.16/10
+METEOR Score: 4.49/10
+CIDEr Score: 1.25/10
+
+BLEU Score: 0.16/10
+METEOR Score: 4.56/10
+CIDEr Score: 1.12/10
+
+BLEU Score: 0.05/10
+METEOR Score: 1.91/10
+CIDEr Score: 0.41/10
+
+BLEU Score: 0.05/10
+METEOR Score: 3.27/10
+CIDEr Score: 0.54/10
+
+BLEU Score: 0.17/10
+METEOR Score: 3.90/10
+CIDEr Score: 0.81/10
+
+BLEU Score: 0.10/10
+METEOR Score: 4.41/10
+CIDEr Score: 1.43/10
+
+BLEU Score: 0.12/10
+METEOR Score: 4.08/10
+CIDEr Score: 1.28/10
+
+BLEU Score: 0.07/10
+METEOR Score: 4.14/10
+CIDEr Score: 0.88/10
+
+BLEU Score: 0.10/10
+METEOR Score: 2.38/10
+CIDEr Score: 0.49/10
+
+BLEU Score: 0.07/10
+METEOR Score: 3.94/10
+CIDEr Score: 0.88/10
+
+BLEU Score: 0.06/10
+METEOR Score: 4.19/10
+CIDEr Score: 1.05/10
+
+BLEU Score: 0.06/10
+METEOR Score: 3.02/10
+CIDEr Score: 0.75/10
+
+BLEU Score: 0.15/10
+METEOR Score: 4.93/10
+CIDEr Score: 1.44/10
+
+BLEU Score: 0.08/10
+METEOR Score: 1.64/10
+CIDEr Score: 0.58/10
+
+BLEU Score: 0.07/10
+METEOR Score: 2.44/10
+CIDEr Score: 1.05/10
+
+BLEU Score: 0.14/10
+METEOR Score: 5.21/10
+CIDEr Score: 1.37/10
+
+BLEU Score: 0.06/10
+METEOR Score: 4.67/10
+CIDEr Score: 0.87/10
+
+BLEU Score: 0.08/10
+METEOR Score: 3.11/10
+CIDEr Score: 0.71/10
+

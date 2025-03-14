@@ -1,0 +1,5 @@
+Original result before optimization | quality: 6.33, cost@1000: $1.94, avg latency: 3.67s                                                                                                                                     
+Optimization progress | best quality: --, lowest cost@1000: --, lowest avg latency: -- | Total Optimization Cost: $0.75:   5%|███▍                                                                 | 0.50/10.0 [01:46<1:19:06]================ Optimization Results =================
+Optimized for: quality, cost, latency
+Based on current optimization parameters, the best solution is the original workflow.
+We recommend increasing the number of trials or relaxing constraints.

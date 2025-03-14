@@ -1,0 +1,32 @@
+Original result before optimization | quality: 4.27, cost@1000: $2.00, avg latency: 2.89s                                                                                                                                     
+Optimization progress | best quality: 5.67, lowest cost@1000: $5.93, lowest avg latency: 4.97s | Total Optimization Cost: $0.84: 100%|██████████████████████████████████████████████████████████████| 10.00/10.0 [01:44<00:00]================ Optimization Results =================
+Optimized for: quality, cost, latency
+Number of Optimized Workflows Generated: 4
+--------------------------------------------------------
+Optimization_1
+  Quality improvement: 15%
+  Cost: 2.97x original
+  Execution time: 1.98x original
+  Quality: 4.90, Cost per 1K invocation: $5.93, Execution time: 5.72s
+========================================================
+--------------------------------------------------------
+Optimization_2
+  Quality improvement: 33%
+  Cost: 3.45x original
+  Execution time: 1.72x original
+  Quality: 5.67, Cost per 1K invocation: $6.88, Execution time: 4.97s
+========================================================
+--------------------------------------------------------
+Optimization_3
+  Quality improvement: 25%
+  Cost: 3.18x original
+  Execution time: 1.78x original
+  Quality: 5.33, Cost per 1K invocation: $6.35, Execution time: 5.14s
+========================================================
+--------------------------------------------------------
+Optimization_4
+  Quality improvement: 30%
+  Cost: 3.25x original
+  Execution time: 1.86x original
+  Quality: 5.57, Cost per 1K invocation: $6.50, Execution time: 5.38s
+========================================================
