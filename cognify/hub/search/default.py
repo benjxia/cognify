@@ -24,6 +24,7 @@ class SearchParams:
 def create_CogTest_search(search_params: SearchParams) -> ControlParameter:
     # Reasoning Parameter
     reasoning_param = reasoning.LMReasoning([NoChange(), VisionPlanning()])
+    # reasoning_param = reasoning.LMReasoning([NoChange()])
 
     # Few Shot Parameter
     few_shot_params = LMFewShot(2)

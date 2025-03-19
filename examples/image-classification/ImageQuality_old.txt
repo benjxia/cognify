@@ -1,0 +1,28 @@
+Loading workflow...
+Loading training data...
+Dry run with the original workflow...
+Original result before optimization | quality: 4.00, cost@1000: $2.01, avg latency: 3.27s
+================ Optimization Results =================
+Optimized for: quality, cost, latency
+Number of Optimized Workflows Generated: 3
+--------------------------------------------------------
+Optimization_1
+  Quality improvement: 8%
+  Cost: 0.98x original
+  Execution time: 1.00x original
+  Quality: 4.33, Cost per 1K invocation: $1.97, Execution time: 3.29s
+========================================================
+--------------------------------------------------------
+Optimization_2
+  Quality improvement: 48%
+  Cost: 1.25x original
+  Execution time: 0.84x original
+  Quality: 5.90, Cost per 1K invocation: $2.51, Execution time: 2.76s
+========================================================
+--------------------------------------------------------
+Optimization_3
+  Quality improvement: 46%
+  Cost: 1.18x original
+  Execution time: 0.78x original
+  Quality: 5.83, Cost per 1K invocation: $2.36, Execution time: 2.55s
+========================================================

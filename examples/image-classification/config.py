@@ -25,8 +25,8 @@ from langchain.output_parsers import PydanticOutputParser
 
 # for other metric data
 import numpy as np
-from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
-from nltk.tokenize import word_tokenize
+# from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
+# from nltk.tokenize import word_tokenize
 from collections import Counter
 import re
 from typing import List, Union, Dict
@@ -39,100 +39,100 @@ class Assessment(BaseModel):
 parser = PydanticOutputParser(pydantic_object=Assessment)
 
 
-def preprocess_text(text: str) -> List[str]:
-    text = text.lower()
-    tokens = word_tokenize(text)
-    return tokens
+# def preprocess_text(text: str) -> List[str]:
+#     text = text.lower()
+#     tokens = word_tokenize(text)
+#     return tokens
 
-def bleu_evaluator(workflow_input: str, workflow_output: str, ground_truth: str) -> float:
-    smoothing = SmoothingFunction().method1
-    weights = (0.25, 0.25, 0.25, 0.25)
+# def bleu_evaluator(workflow_input: str, workflow_output: str, ground_truth: str) -> float:
+#     smoothing = SmoothingFunction().method1
+#     weights = (0.25, 0.25, 0.25, 0.25)
     
-    reference_tokens = [preprocess_text(ground_truth)]
-    candidate_tokens = preprocess_text(workflow_output)
+#     reference_tokens = [preprocess_text(ground_truth)]
+#     candidate_tokens = preprocess_text(workflow_output)
     
-    try:
-        score = sentence_bleu(reference_tokens, 
-                            candidate_tokens,
-                            weights=weights,
-                            smoothing_function=smoothing)
+#     try:
+#         score = sentence_bleu(reference_tokens, 
+#                             candidate_tokens,
+#                             weights=weights,
+#                             smoothing_function=smoothing)
 
-        score = score * 10 # score scaling
-    except Exception:
-        score = 0.0
+#         score = score * 10 # score scaling
+#     except Exception:
+#         score = 0.0
         
-    return score
+#     return score
 
-def meteor_evaluator(workflow_input: str, workflow_output: str, ground_truth: str) -> float:
-    reference_tokens = preprocess_text(ground_truth)
-    candidate_tokens = preprocess_text(workflow_output)
+# def meteor_evaluator(workflow_input: str, workflow_output: str, ground_truth: str) -> float:
+#     reference_tokens = preprocess_text(ground_truth)
+#     candidate_tokens = preprocess_text(workflow_output)
     
-    # acc and recall
-    matches = 0
-    for c_token in candidate_tokens:
-        if c_token in reference_tokens:
-            matches += 1
+#     # acc and recall
+#     matches = 0
+#     for c_token in candidate_tokens:
+#         if c_token in reference_tokens:
+#             matches += 1
             
-    precision = matches / len(candidate_tokens) if candidate_tokens else 0
-    recall = matches / len(reference_tokens) if reference_tokens else 0
+#     precision = matches / len(candidate_tokens) if candidate_tokens else 0
+#     recall = matches / len(reference_tokens) if reference_tokens else 0
     
-    # F1
-    if precision + recall == 0:
-        return 0.0
-    meteor = 2 * (precision * recall) / (precision + recall)
+#     # F1
+#     if precision + recall == 0:
+#         return 0.0
+#     meteor = 2 * (precision * recall) / (precision + recall)
 
-    return meteor * 10
+#     return meteor * 10
 
-def cider_evaluator(workflow_input: str, workflow_output: str, ground_truth: str) -> float:
-    def get_ngrams(tokens: List[str], n: int = 4) -> Counter:
-        return Counter([' '.join(tokens[i:i+n]) for i in range(len(tokens)-n+1)])
+# def cider_evaluator(workflow_input: str, workflow_output: str, ground_truth: str) -> float:
+#     def get_ngrams(tokens: List[str], n: int = 4) -> Counter:
+#         return Counter([' '.join(tokens[i:i+n]) for i in range(len(tokens)-n+1)])
     
-    candidate_tokens = preprocess_text(workflow_output)
-    reference_tokens = preprocess_text(ground_truth)
+#     candidate_tokens = preprocess_text(workflow_output)
+#     reference_tokens = preprocess_text(ground_truth)
     
-    # TF-IDF weight
-    doc_freq = Counter()
-    doc_freq.update(get_ngrams(reference_tokens))
+#     # TF-IDF weight
+#     doc_freq = Counter()
+#     doc_freq.update(get_ngrams(reference_tokens))
     
-    # n-gram
-    cand_vec = get_ngrams(candidate_tokens)
-    ref_vec = get_ngrams(reference_tokens)
+#     # n-gram
+#     cand_vec = get_ngrams(candidate_tokens)
+#     ref_vec = get_ngrams(reference_tokens)
     
-    # cos
-    numerator = sum((cand_vec[gram] * ref_vec[gram]) / (doc_freq[gram] + 1) 
-                   for gram in set(cand_vec) & set(ref_vec))
+#     # cos
+#     numerator = sum((cand_vec[gram] * ref_vec[gram]) / (doc_freq[gram] + 1) 
+#                    for gram in set(cand_vec) & set(ref_vec))
     
-    denom_cand = np.sqrt(sum((cand_vec[gram] / (doc_freq[gram] + 1))**2 
-                            for gram in cand_vec))
-    denom_ref = np.sqrt(sum((ref_vec[gram] / (doc_freq[gram] + 1))**2 
-                           for gram in ref_vec))
+#     denom_cand = np.sqrt(sum((cand_vec[gram] / (doc_freq[gram] + 1))**2 
+#                             for gram in cand_vec))
+#     denom_ref = np.sqrt(sum((ref_vec[gram] / (doc_freq[gram] + 1))**2 
+#                            for gram in ref_vec))
     
-    if denom_cand * denom_ref == 0:
-        return 0.0
+#     if denom_cand * denom_ref == 0:
+#         return 0.0
     
-    score = numerator / (denom_cand * denom_ref)
-    return score * 10
+#     score = numerator / (denom_cand * denom_ref)
+#     return score * 10
 
-def combined_evaluator(workflow_input: str, workflow_output: str, ground_truth: str) -> float:
+# def combined_evaluator(workflow_input: str, workflow_output: str, ground_truth: str) -> float:
 
-    bleu = bleu_evaluator(workflow_input, workflow_output, ground_truth)
-    meteor = meteor_evaluator(workflow_input, workflow_output, ground_truth)
-    cider = cider_evaluator(workflow_input, workflow_output, ground_truth)
+#     bleu = bleu_evaluator(workflow_input, workflow_output, ground_truth)
+#     meteor = meteor_evaluator(workflow_input, workflow_output, ground_truth)
+#     cider = cider_evaluator(workflow_input, workflow_output, ground_truth)
     
-    # align weight
-    weights = {
-        'bleu': 0.3,
-        'meteor': 0.3,
-        'cider': 0.4
-    }
+#     # align weight
+#     weights = {
+#         'bleu': 0.3,
+#         'meteor': 0.3,
+#         'cider': 0.4
+#     }
     
-    final_score = (
-        bleu * weights['bleu'] + 
-        meteor * weights['meteor'] + 
-        cider * weights['cider']
-    )
+#     final_score = (
+#         bleu * weights['bleu'] + 
+#         meteor * weights['meteor'] + 
+#         cider * weights['cider']
+#     )
     
-    return final_score
+#     return final_score
 
 @cognify.register_evaluator
 def vlm_judge(workflow_input, workflow_output, ground_truth):
@@ -159,16 +159,16 @@ Provide a score between 0 and 10.
         }
     )
 
-    # get other metric data
-    with open('evaluation_scores.txt', 'a') as file:
-        file.write(f"BLEU Score: {bleu_evaluator(workflow_input, workflow_output, ground_truth):.2f}/10\n")
-        file.write(f"METEOR Score: {meteor_evaluator(workflow_input, workflow_output, ground_truth):.2f}/10\n")
-        file.write(f"CIDEr Score: {cider_evaluator(workflow_input, workflow_output, ground_truth):.2f}/10\n")
-        file.write(f"Combined Score: {combined_evaluator(workflow_input, workflow_output, ground_truth):.2f}/10\n")
-        file.write("\n")  
+    # # get other metric data
+    # with open('evaluation_scores.txt', 'a') as file:
+    #     file.write(f"BLEU Score: {bleu_evaluator(workflow_input, workflow_output, ground_truth):.2f}/10\n")
+    #     file.write(f"METEOR Score: {meteor_evaluator(workflow_input, workflow_output, ground_truth):.2f}/10\n")
+    #     file.write(f"CIDEr Score: {cider_evaluator(workflow_input, workflow_output, ground_truth):.2f}/10\n")
+    #     file.write(f"Combined Score: {combined_evaluator(workflow_input, workflow_output, ground_truth):.2f}/10\n")
+    #     file.write("\n")  
 
-        if cider_evaluator(workflow_input, workflow_output, ground_truth) == 0:
-            file.write(f"output: {workflow_output}\n expected: {ground_truth}\n")
+    #     if cider_evaluator(workflow_input, workflow_output, ground_truth) == 0:
+    #         file.write(f"output: {workflow_output}\n expected: {ground_truth}\n")
 
     return assess.score
 

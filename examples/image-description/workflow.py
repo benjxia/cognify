@@ -57,22 +57,22 @@ def vlm_workflow(workflow_input):
         "workflow_output": caption
     }
 
-import json
+# import json
 
-def transform_json(input_file="TextCaps/TextCaps_Annotations.json", output_file="output.json"):
-    with open(input_file, 'r') as f:
-        data = json.load(f)
+# def transform_json(input_file="TextCaps/TextCaps_Annotations.json", output_file="output.json"):
+#     with open(input_file, 'r') as f:
+#         data = json.load(f)
     
-    transformed_data = []
-    for item in data['data']:
-        transformed_item = {
-            'image_path': item['flickr_300k_url'],
-            'expected_caption': item['caption_str']
-        }
-        transformed_data.append(transformed_item)
+#     transformed_data = []
+#     for item in data['data']:
+#         transformed_item = {
+#             'image_path': item['flickr_300k_url'],
+#             'expected_caption': item['caption_str']
+#         }
+#         transformed_data.append(transformed_item)
     
-    with open(output_file, 'w') as f:
-        json.dump(transformed_data, f, indent=4)
+#     with open(output_file, 'w') as f:
+#         json.dump(transformed_data, f, indent=4)
 
 if __name__ == '__main__':
     image_file = "TextCaps/images/039dd0ed14106d32.jpg" 

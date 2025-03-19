@@ -190,3 +190,4 @@ examples/Visual-Question-Answering/VQA-sub-sampled.zip
 examples/image-captioning/TextCaps/*
 examples/image-captioning/example.env
 *.jpg
+/examples/integ-workflow/VQA-sub-sampled/
