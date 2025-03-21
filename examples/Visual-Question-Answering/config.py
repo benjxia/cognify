@@ -7,7 +7,7 @@ import os
 os.environ['OPENAI_API_KEY'] = ...
 os.environ['COGNIFY_TELEMETRY'] = "false"
 
-DEFAULT_NR_SAMPLES = 50
+DEFAULT_NR_SAMPLES = 25
 
 
 
@@ -23,8 +23,8 @@ def load_data(path_to_data = "VQA-sub-sampled", nr_samples=DEFAULT_NR_SAMPLES):
     input should be dictionaity that annottated workflow() func can handle
     
     '''
-    TRAIN_SPLIT, EVAL_SPLIT, TEST_SPLIT = 0.8, 0.1, 0.1
-    assert TRAIN_SPLIT + EVAL_SPLIT + TEST_SPLIT == 1.0, 'Splits should sum to 1.0'
+    TRAIN_SPLIT, EVAL_SPLIT, TEST_SPLIT = 0.33, 0.33, 0.33
+    assert abs(TRAIN_SPLIT + EVAL_SPLIT + TEST_SPLIT - 1.0) < 0.1, 'Splits should sum to 1.0'
 
     ANNOTTATION_FILE_PATH = os.path.join(path_to_data, 'v2_mscoco_val2014_annotations_subsampled.json')
     QUESTIONS_FILE_PATH = os.path.join(path_to_data, 'v2_OpenEnded_mscoco_val2014_questions_subsampled.json')
@@ -149,5 +149,6 @@ model_configs = [
 ]
 
 search_settings = default.create_search(
-    model_selection_cog=model_configs
+    # model_selection_cog=model_configs
+    model_selection_cog=None # to distable the model selection cog
 )

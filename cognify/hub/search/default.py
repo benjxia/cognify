@@ -5,7 +5,7 @@ from cognify.optimizer.core import driver, flow
 from cognify.hub.cogs import reasoning, ensemble, model_selection
 from cognify.hub.cogs.common import NoChange
 from cognify.hub.cogs.fewshot import LMFewShot
-from cognify.hub.cogs.reasoning import ZeroShotCoT, PlanBefore, VisionPlanning
+from cognify.hub.cogs.reasoning import ZeroShotCoT, PlanBefore, VisionPlanning, VLMQueryRewriting
 from cognify.hub.cogs.imagequality import VLMImageQuality, LowQuality, HighQuality
 from cognify.optimizer.control_param import ControlParameter, SelectedObjectives
 from dataclasses import dataclass
@@ -23,8 +23,7 @@ class SearchParams:
 
 def create_CogTest_search(search_params: SearchParams) -> ControlParameter:
     # Reasoning Parameter
-    reasoning_param = reasoning.LMReasoning([NoChange(), VisionPlanning()])
-    # reasoning_param = reasoning.LMReasoning([NoChange()])
+    reasoning_param = reasoning.LMReasoning([NoChange(), VisionPlanning(), VLMQueryRewriting()])
 
     # Few Shot Parameter
     few_shot_params = LMFewShot(2)
@@ -36,9 +35,9 @@ def create_CogTest_search(search_params: SearchParams) -> ControlParameter:
     inner_opt_config = flow.OptConfig(
         n_trials=search_params.n_trials,
     )
-    params = [few_shot_params, reasoning_param, image_quality]
-    if search_params.model_selection_cog is not None:
-        params.append(search_params.model_selection_cog)
+    params = [image_quality]
+    # if search_params.model_selection_cog is not None:
+    #     params.append(search_params.model_selection_cog)
     inner_loop_config = driver.LayerConfig(
         layer_name="light_opt_layer",
         universal_params=params,
